@@ -1,14 +1,11 @@
-#include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
-#include <dummy.h>
+#include <main.h>
+#include <routers/ClientRouter.h>
 
 ESP8266WebServer server(80);
 
 const char* ssid = "Pixel_9287";               
 const char* password = "12345678";
 
-void MainSt();
 
 void setup() {
   Serial.begin(115200);
@@ -26,7 +23,7 @@ void setup() {
   }
   Serial.println("Wifi is connected");
 
-  server.on("/", MainSt);                    
+  InitRouter();                  
   server.begin();                                    
   Serial.println("Web server running.");               
 
@@ -45,8 +42,4 @@ void loop() {
     delay(10);
     ESP.reset();
   }
-}
-
-void MainSt(){
-  server.send(200, "text/html", "HelloWorld!");
 }
