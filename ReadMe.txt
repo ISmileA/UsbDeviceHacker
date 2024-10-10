@@ -1,0 +1,1 @@
+Ссылка архитектуры проекта в Miro: https://miro.com/app/board/uXjVLU63Vzo=/?share_link_id=998511358297
