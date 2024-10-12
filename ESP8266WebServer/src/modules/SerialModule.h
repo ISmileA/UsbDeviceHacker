@@ -1,11 +1,11 @@
 #pragma once
 #include <Arduino.h>
+#include <configs/SerialConfig.h>
 #include <iostream>
 using namespace std;
 
 class SerialModule {
 private:
-    bool flag = false;
     bool status = false;
     uint8_t crc8(uint8_t *buffer, uint8_t size) {
         uint8_t crc = 0;
@@ -21,11 +21,11 @@ private:
 
     bool AwaitResponse(){
         uint32_t timer = millis();
-        while((millis()-timer) < 150){
+        while((millis()-timer) < AWAIT_ANSWER_TIME){
             if(Serial.available() >= 3){
                 uint8_t data[3] = {};
                 Serial.readBytes(data, 3);
-                if (data[0] == 0xC5){
+                if (data[0] == HEADER){
                     uint8_t crc = crc8(data, 3);
                     if(crc == data[2]){
                         status = data[1];
@@ -38,7 +38,7 @@ private:
     }
 public:
     string SendDataWithWait(uint8_t *data, uint16_t len){
-        uint8_t data_out[len+2] = {0xC5,};
+        uint8_t data_out[len+2] = {HEADER,};
         for(int i = 0; i<len; i++){
             data_out[i+1] = data[i];
         }
@@ -48,8 +48,8 @@ public:
             if (status){
                 status = false;
                 return "ok";
-            }else
-                return "error";
+            }
+            return "error";
         }
         return "timeout";
     }
