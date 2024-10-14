@@ -1,0 +1,33 @@
+/*
+ * UsartController.h
+ *
+ *  Created on: Oct 14, 2024
+ *      Author: arsen
+ */
+
+#ifndef INC_USARTCONTROLLER_H_
+#define INC_USARTCONTROLLER_H_
+
+typedef struct {
+	uint8_t header;
+	uint8_t device;
+	uint8_t command;
+	uint8_t length;
+	uint8_t data[32];
+	uint8_t crc8;
+} RxData;
+
+typedef struct {
+	uint8_t header;
+	uint8_t data;
+	uint8_t crc8;
+} TxData;
+
+uint8_t flag = 0;
+uint8_t length = 0;
+uint8_t parsedData = 0;
+
+void UsartCallback();
+
+
+#endif /* INC_USARTCONTROLLER_H_ */

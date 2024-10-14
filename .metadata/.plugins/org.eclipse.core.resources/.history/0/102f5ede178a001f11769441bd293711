@@ -1,0 +1,18 @@
+/*
+ * UsartController.h
+ *
+ *  Created on: Oct 14, 2024
+ *      Author: arsen
+ */
+
+#ifndef INC_USARTCONTROLLER_H_
+#define INC_USARTCONTROLLER_H_
+
+typedef struct {
+
+} txData;
+
+void UsartCallback();
+
+
+#endif /* INC_USARTCONTROLLER_H_ */

@@ -1,0 +1,14 @@
+/*
+ * UsartRouter.c
+ *
+ *  Created on: Oct 14, 2024
+ *      Author: arsen
+ */
+
+#include "UsartRouter.h"
+
+void ParsingData(RxData rxdata){
+
+}
+
+

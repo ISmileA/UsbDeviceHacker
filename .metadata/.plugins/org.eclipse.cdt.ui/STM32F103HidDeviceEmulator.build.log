@@ -1,0 +1,10 @@
+14:47:46 **** Incremental Build of configuration Debug for project STM32F103HidDeviceEmulator ****
+make -j16 all 
+arm-none-eabi-size  STM32F103HidDeviceEmulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30568	    396	   3580	  34544	   86f0	STM32F103HidDeviceEmulator.elf
+Finished building: default.size.stdout
+ 
+
+14:47:46 Build Finished. 0 errors, 0 warnings. (took 490ms)
+

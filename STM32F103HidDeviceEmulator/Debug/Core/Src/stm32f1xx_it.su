@@ -1,0 +1,13 @@
+C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usart.h:1840:26:LL_USART_IsActiveFlag_RXNE	16	static
+C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usart.h:2275:26:LL_USART_IsEnabledIT_RXNE	16	static
+../Core/Src/stm32f1xx_it.c:70:6:NMI_Handler	4	static
+../Core/Src/stm32f1xx_it.c:85:6:HardFault_Handler	4	static
+../Core/Src/stm32f1xx_it.c:100:6:MemManage_Handler	4	static
+../Core/Src/stm32f1xx_it.c:115:6:BusFault_Handler	4	static
+../Core/Src/stm32f1xx_it.c:130:6:UsageFault_Handler	4	static
+../Core/Src/stm32f1xx_it.c:145:6:SVC_Handler	4	static
+../Core/Src/stm32f1xx_it.c:158:6:DebugMon_Handler	4	static
+../Core/Src/stm32f1xx_it.c:171:6:PendSV_Handler	4	static
+../Core/Src/stm32f1xx_it.c:184:6:SysTick_Handler	8	static
+../Core/Src/stm32f1xx_it.c:205:6:USB_LP_CAN1_RX0_IRQHandler	8	static
+../Core/Src/stm32f1xx_it.c:219:6:USART1_IRQHandler	8	static

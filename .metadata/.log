@@ -1,0 +1,60 @@
+!SESSION 2024-10-14 13:19:51.315 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ru_RU
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.net 1 0 2024-10-14 13:20:04.560
+!MESSAGE System property http.proxyHost is not set but should be 91.244.198.188.
+
+!ENTRY org.eclipse.core.net 1 0 2024-10-14 13:20:04.561
+!MESSAGE System property http.proxyPort is not set but should be 2978.
+
+!ENTRY org.eclipse.core.net 1 0 2024-10-14 13:20:04.565
+!MESSAGE System property https.proxyHost is not set but should be 91.244.198.188.
+
+!ENTRY org.eclipse.core.net 1 0 2024-10-14 13:20:04.565
+!MESSAGE System property https.proxyPort is not set but should be 2978.
+
+!ENTRY org.eclipse.core.net 1 0 2024-10-14 13:20:04.571
+!MESSAGE System property https.proxyHost is not set but should be 91.244.198.188.
+
+!ENTRY org.eclipse.core.net 1 0 2024-10-14 13:20:04.571
+!MESSAGE System property https.proxyPort is not set but should be 2978.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-10-14 13:20:08.744
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-10-14 13:20:08.754
+!MESSAGE Log4j2 initialized with config file C:\myprojects\Stm32\UsbDeviceHacker\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-10-14 13:20:12.015
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-10-14 13:21:27.646
+!MESSAGE Indexed 'STM32F103HidDeviceEmulator' (17 sources, 78 headers) in 2.61 sec: 3,643 declarations; 13,251 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-10-14 13:24:58.063
+!MESSAGE Indexed 'Test' (30 sources, 93 headers) in 1.57 sec: 5,306 declarations; 23,980 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0068%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:39:15.401
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.ui 2 0 2024-10-14 14:40:50.637
+!MESSAGE The 'org.eclipse.cdt.ui.InclusionProposalComputer' proposal computer from the 'org.eclipse.cdt.ui' plug-in did not complete normally. The extension violated the API contract of the 'computeContextInformation()' operation.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:40:56.871
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:41:26.360
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:42:03.774
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:42:26.227
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:45:04.668
+!MESSAGE Won't launch debug session since we failed to locate the binary.

@@ -1,0 +1,13 @@
+/*
+ * UsartController.c
+ *
+ *  Created on: Oct 14, 2024
+ *      Author: arsen
+ */
+
+#include "UsartController.h"
+
+void UsartCallback(){
+	uint8_t byte = USART1->DR;
+}
+

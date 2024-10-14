@@ -1,0 +1,25 @@
+/*
+ * UsartController.c
+ *
+ *  Created on: Oct 14, 2024
+ *      Author: arsen
+ */
+
+#include "UsartController.h"
+#include "UsartDataConfig.h"
+
+
+void UsartCallback(){
+	uint8_t byte = USART1->DR;
+	if(byte == HEADER || flag){
+		buffer[parsedData] = byte;
+		if(parsedData == 3)
+			length = byte;
+		if(parsedData >= length+4){
+			length = 0;
+			flag = 0;
+		}
+		parsedData++;
+	}
+}
+
