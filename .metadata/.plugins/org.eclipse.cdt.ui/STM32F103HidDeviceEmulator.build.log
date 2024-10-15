@@ -1,10 +1,18 @@
-14:47:46 **** Incremental Build of configuration Debug for project STM32F103HidDeviceEmulator ****
+17:31:16 **** Incremental Build of configuration Debug for project STM32F103HidDeviceEmulator ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Device/ST/STM32F1xx/Include -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Device/ST/STM32F1xx/Include -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -IC:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc -o "STM32F103HidDeviceEmulator.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\myprojects\Stm32\UsbDeviceHacker\STM32F103HidDeviceEmulator\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103HidDeviceEmulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F103HidDeviceEmulator.elf
+ 
 arm-none-eabi-size  STM32F103HidDeviceEmulator.elf 
+arm-none-eabi-objdump -h -S STM32F103HidDeviceEmulator.elf  > "STM32F103HidDeviceEmulator.list"
    text	   data	    bss	    dec	    hex	filename
-  30568	    396	   3580	  34544	   86f0	STM32F103HidDeviceEmulator.elf
+  31924	    396	   3580	  35900	   8c3c	STM32F103HidDeviceEmulator.elf
 Finished building: default.size.stdout
  
+Finished building: STM32F103HidDeviceEmulator.list
+ 
 
-14:47:46 Build Finished. 0 errors, 0 warnings. (took 490ms)
+17:31:18 Build Finished. 0 errors, 0 warnings. (took 1s.348ms)
 

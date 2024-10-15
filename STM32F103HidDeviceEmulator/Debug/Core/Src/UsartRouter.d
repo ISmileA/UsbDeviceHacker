@@ -36,7 +36,8 @@ Core/Src/UsartRouter.o: ../Core/Src/UsartRouter.c \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_pwr.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_dma.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h \
- ../Core/Inc/UsartDataConfig.h ../Core/Inc/crc8.h
+ ../Core/Inc/UsartDataConfig.h ../Core/Inc/crc8.h \
+ ../Core/Inc/UsartAnswerModule.h ../Core/Inc/crc8.h
 ../Core/Inc/UsartRouter.h:
 ../Core/Inc/UsartController.h:
 ../Core/Inc/main.h:
@@ -76,4 +77,6 @@ C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_dma.h:
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h:
 ../Core/Inc/UsartDataConfig.h:
+../Core/Inc/crc8.h:
+../Core/Inc/UsartAnswerModule.h:
 ../Core/Inc/crc8.h:

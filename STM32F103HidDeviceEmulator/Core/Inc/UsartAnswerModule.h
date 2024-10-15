@@ -1,0 +1,22 @@
+/*
+ * UsartAnswerModule.h
+ *
+ *  Created on: Oct 15, 2024
+ *      Author: arsen
+ */
+
+#ifndef INC_USARTANSWERMODULE_H_
+#define INC_USARTANSWERMODULE_H_
+
+
+#include "UsartController.h"
+#include "crc8.h"
+
+void answer(uint8_t data){
+	TxData data_out = {HEADER, data, 0};
+	data_out.crc8 = crc8(&data_out, 2);
+	UsartDataTransmit(&data_out, 3);
+}
+
+
+#endif /* INC_USARTANSWERMODULE_H_ */

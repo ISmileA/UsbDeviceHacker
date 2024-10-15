@@ -7,16 +7,18 @@
 
 #include "UsartRouter.h"
 #include "crc8.h"
-
+#include "UsartAnswerModule.h"
 
 void ParsingData(RxData *rxdata){
 	if(rxdata->header == HEADER){
 		if(rxdata->length+5 == sizeof(rxdata)){
 			if(crc8(rxdata, sizeof(rxdata)-1) == rxdata->crc8){
-
+				answer(USART_OK);
+				return 0;
 			}
 		}
 	}
+	answer(USART_ERROR);
 }
 
 

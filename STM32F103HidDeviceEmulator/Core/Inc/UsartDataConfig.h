@@ -19,4 +19,7 @@
 #define CLICK_COMMAND 0x03
 #define GET_COMMAND 0x04
 
+#define USART_OK 0x01
+#define USART_ERROR 0x00
+
 #endif /* INC_USARTDATACONFIG_H_ */

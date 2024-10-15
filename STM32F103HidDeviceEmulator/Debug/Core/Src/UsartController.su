@@ -1,1 +1,2 @@
 ../Core/Src/UsartController.c:16:6:UsartCallback	16	static
+../Core/Src/UsartController.c:33:6:UsartDataTransmit	24	static

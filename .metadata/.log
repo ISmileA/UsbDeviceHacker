@@ -58,3 +58,15 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-10-14 14:45:04.668
 !MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-10-15 17:00:27.050
+!MESSAGE Indexed 'F103BootloaderOnUsb' (16 sources, 71 headers) in 0.552 sec: 2,539 declarations; 3,800 references; 25 unresolved inclusions; 7 syntax errors; 534 unresolved names (7.8%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-10-15 17:41:42.438
+!MESSAGE Indexed 'UsartTest' (17 sources, 78 headers) in 1.18 sec: 3,643 declarations; 13,251 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-10-15 18:05:48.945
+!MESSAGE Indexed 'UsartTest' (18 sources, 78 headers) in 0.796 sec: 3,653 declarations; 13,304 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-10-15 20:00:31.993
+!MESSAGE Indexed 'F103_MPU01_Bootloader' (26 sources, 143 headers) in 3.64 sec: 9,710 declarations; 32,268 references; 6 unresolved inclusions; 550 syntax errors; 1,982 unresolved names (4.5%)

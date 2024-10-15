@@ -1,0 +1,15 @@
+/*
+ * UsartAnswerModule.h
+ *
+ *  Created on: Oct 15, 2024
+ *      Author: arsen
+ */
+
+#ifndef INC_USARTANSWERMODULE_H_
+#define INC_USARTANSWERMODULE_H_
+
+
+#include "UsartController.h"
+
+
+#endif /* INC_USARTANSWERMODULE_H_ */

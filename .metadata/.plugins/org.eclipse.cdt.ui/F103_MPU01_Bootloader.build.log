@@ -1,0 +1,26 @@
+20:06:42 **** Incremental Build of configuration Debug for project F103_MPU01_Bootloader ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32F103xB -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/main.c:5:
+../Core/Inc/serial.h: In function 'USART_TRANSMIT_IT':
+../Core/Inc/serial.h:88:1: warning: control reaches end of non-void function [-Wreturn-type]
+   88 | }
+      | ^
+arm-none-eabi-g++ -o "F103_MPU01_Bootloader.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\myprojects\Stm32\F103Bootloader\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F103_MPU01_Bootloader.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: F103_MPU01_Bootloader.elf has a LOAD segment with RWX permissions
+Finished building target: F103_MPU01_Bootloader.elf
+ 
+arm-none-eabi-size  F103_MPU01_Bootloader.elf 
+arm-none-eabi-objdump -h -S F103_MPU01_Bootloader.elf  > "F103_MPU01_Bootloader.list"
+arm-none-eabi-objcopy  -O binary F103_MPU01_Bootloader.elf  "F103_MPU01_Bootloader.bin"
+   text	   data	    bss	    dec	    hex	filename
+  11796	     24	   1984	  13804	   35ec	F103_MPU01_Bootloader.elf
+Finished building: default.size.stdout
+ 
+Finished building: F103_MPU01_Bootloader.bin
+ 
+Finished building: F103_MPU01_Bootloader.list
+ 
+
+20:06:43 Build Finished. 0 errors, 2 warnings. (took 1s.37ms)
+
