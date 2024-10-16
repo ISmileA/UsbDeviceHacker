@@ -27,7 +27,6 @@ typedef struct TxDataTag{
 } TxData;
 
 void UsartCallback();
-void UsartDataTransmit(uint8_t *buf, uint8_t len);
 
 
 #endif /* INC_USARTCONTROLLER_H_ */

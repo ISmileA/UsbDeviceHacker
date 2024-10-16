@@ -26,7 +26,7 @@ private:
                 uint8_t data[3] = {};
                 Serial.readBytes(data, 3);
                 if (data[0] == HEADER){
-                    uint8_t crc = crc8(data, 3);
+                    uint8_t crc = crc8(data, 2);
                     if(crc == data[2]){
                         status = data[1];
                         return true;

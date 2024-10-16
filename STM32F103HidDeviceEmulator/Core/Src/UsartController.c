@@ -6,34 +6,32 @@
  */
 
 #include "UsartRouter.h"
+#include "UsartController.h"
 
-uint8_t flag = 0;
 uint8_t length = 0;
 uint8_t parsedData = 0;
 uint8_t buffer[32] = {};
+uint32_t timer = 0;
 
-
-void UsartCallback(){
-	uint8_t byte = USART1->DR;
-	if(byte == HEADER || flag){
-		flag = 1;
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	uint8_t byte = rxcall;
+	if((HAL_GetTick()-timer) > 2){
+		length = 0;
+		parsedData = 0;
+	}
+	if(byte == HEADER || parsedData > 0){
 		buffer[parsedData] = byte;
 		if(parsedData == 3)
 			length = byte;
 		if(parsedData >= length+4){
-			RxData *rxdata = &buffer;
+			HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+			ParsingData(buffer, parsedData+1);
 			length = 0;
-			flag = 0;
-			ParsingData(rxdata);
-		}
-		parsedData++;
+			parsedData = 0;
+		}else
+			parsedData++;
 	}
-}
-
-void UsartDataTransmit(uint8_t *buf, uint8_t len){
-	for (int i = 0; i < len; i++){
-		while ((USART1->SR & USART_SR_TXE) == 0);
-		USART1->DR = buf[i];
-	}
+	timer = HAL_GetTick();
+	HAL_UART_Receive_IT(huart,&rxcall,1);
 }
 

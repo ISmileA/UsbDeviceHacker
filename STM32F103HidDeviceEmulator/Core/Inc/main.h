@@ -29,6 +29,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
+extern uint8_t rxcall;
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

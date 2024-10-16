@@ -1,2 +1,1 @@
-../Core/Src/UsartController.c:16:6:UsartCallback	5
-../Core/Src/UsartController.c:33:6:UsartDataTransmit	3
+../Core/Src/UsartController.c:16:6:HAL_UART_RxCpltCallback	6

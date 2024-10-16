@@ -11,6 +11,6 @@
 
 #include "UsartController.h"
 
-void ParsingData(RxData *rxdata);
+void ParsingData(uint8_t *buffer, uint8_t len);
 
 #endif /* INC_USARTROUTER_H_ */

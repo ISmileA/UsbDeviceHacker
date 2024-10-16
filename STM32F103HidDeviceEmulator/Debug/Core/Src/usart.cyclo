@@ -1,8 +1,3 @@
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include/core_cm3.h:1499:26:__NVIC_GetPriorityGrouping	1
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include/core_cm3.h:1511:22:__NVIC_EnableIRQ	2
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include/core_cm3.h:1639:22:__NVIC_SetPriority	2
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/CMSIS/Include/core_cm3.h:1686:26:NVIC_EncodePriority	2
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usart.h:412:22:LL_USART_Enable	1
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usart.h:1527:22:LL_USART_ConfigAsyncMode	1
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_bus.h:761:22:LL_APB2_GRP1_EnableClock	1
-../Core/Src/usart.c:29:6:MX_USART1_UART_Init	1
+../Core/Src/usart.c:31:6:MX_USART3_UART_Init	2
+../Core/Src/usart.c:59:6:HAL_UART_MspInit	2
+../Core/Src/usart.c:95:6:HAL_UART_MspDeInit	2
