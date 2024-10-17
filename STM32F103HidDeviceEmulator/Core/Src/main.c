@@ -2,12 +2,14 @@
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
+#include "MouseController.h"
 
 extern UART_HandleTypeDef huart3;
+
 uint8_t rxcall;
+Action action = {0, 0, {}};
 
 void SystemClock_Config(void);
-char *user_data = "The application is running\r\n";
 
 int main(void)
 {
@@ -16,10 +18,20 @@ int main(void)
 	MX_GPIO_Init();
 	MX_USB_DEVICE_Init();
 	MX_USART3_UART_Init();
-
 	HAL_UART_Receive_IT(&huart3,&rxcall,1);
+
 	while (1)
 	{
+		switch(action.device){
+			case(MOUSE):
+				MouseCommandSetup(&action);
+				action.device = 0;
+				break;
+			case(KEYBOARD):
+				break;
+			case(ANIMATION):
+				break;
+		}
 	}
 }
 

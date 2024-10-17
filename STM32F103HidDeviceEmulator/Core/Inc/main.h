@@ -29,7 +29,16 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
+typedef struct{
+	uint8_t device;
+	uint8_t command;
+	uint8_t data[32];
+} Action;
+
 extern uint8_t rxcall;
+extern Action action;
+
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

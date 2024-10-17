@@ -14,10 +14,14 @@ void ParsingData(uint8_t *buffer, uint8_t len){
 		if(buffer[3]+5 == len){
 			if(crc8(buffer, buffer[3]+4) == buffer[buffer[3]+4]){
 				answer(USART_OK);
+				action.command = buffer[2];
+				for(uint8_t i=0; i<buffer[3]; i++){
+					action.data[i] = buffer[i+4];
+				}
+				action.device = buffer[1];
 			}else
 				answer(USART_ERROR);
 		}
 	}
 }
-
 

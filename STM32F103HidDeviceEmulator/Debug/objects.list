@@ -1,3 +1,4 @@
+"./Core/Src/MouseController.o"
 "./Core/Src/UsartController.o"
 "./Core/Src/UsartRouter.o"
 "./Core/Src/gpio.o"
