@@ -23,13 +23,14 @@ private:
         uint32_t timer = millis();
         while((millis()-timer) < AWAIT_ANSWER_TIME){
             if(Serial.available() >= 3){
-                uint8_t data[3] = {};
-                Serial.readBytes(data, 3);
-                if (data[0] == HEADER){
-                    uint8_t crc = crc8(data, 2);
-                    if(crc == data[2]){
-                        status = data[1];
-                        return true;
+                uint8_t data[3] = {0, 0, 0};
+                if(Serial.readBytes(data, 3)){
+                    if (data[0] == HEADER){
+                        uint8_t crc = crc8(data, 2);
+                        if(crc == data[2]){
+                            status = data[1];
+                            return true;
+                        }
                     }
                 }
             }

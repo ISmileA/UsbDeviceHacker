@@ -1,5 +1,5 @@
-Core/Src/MouseController.o: ../Core/Src/MouseController.c \
- ../Core/Inc/MouseController.h ../Core/Inc/UsartController.h \
+Core/Src/KeyboardModule.o: ../Core/Src/KeyboardModule.c \
+ ../Core/Inc/KeyboardModule.h ../Core/Inc/UsartController.h \
  ../Core/Inc/main.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
@@ -35,7 +35,7 @@ Core/Src/MouseController.o: ../Core/Src/MouseController.c \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
-../Core/Inc/MouseController.h:
+../Core/Inc/KeyboardModule.h:
 ../Core/Inc/UsartController.h:
 ../Core/Inc/main.h:
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:

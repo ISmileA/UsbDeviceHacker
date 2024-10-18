@@ -1,26 +1,26 @@
 #pragma once
 #include "main.h"
 #include "ArduinoJson.h"
-#include "modules/ClientProcessing.h"
+#include "modules/ClientProcessingModule.h"
 #include "modules/SerialModule.h"
 #include "configs/SerialConfig.h"
-
+#include "modules/AnimationModule.h"
 
 
 namespace Animation{
-    
+
+    AnimationModule animate;
     ClientProcessing cpr;
     SerialModule serial;
     JsonDocument parsed;
+
     void set(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
-            uint8 data[4] = {};
+            uint8 data[32] = {};
             data[0] = ANIMATION;
-            data[1] = SET_COMMAND;
-            data[2] = 1;
-            data[3] = parsed["animation"];  
-
-            cpr.AnswerClient(serial.SendDataWithWait(data, 4));
+            data[1] = SET_COMMAND; 
+            animate.AnimationSetup(&parsed, data);
+            cpr.AnswerClient(serial.SendDataWithWait(data, data[2]+3));
         }
     };
     void remove(){
@@ -29,7 +29,6 @@ namespace Animation{
             data[0] = ANIMATION;
             data[1] = REMOVE_COMMAND;
             data[2] = 0;
-
             cpr.AnswerClient(serial.SendDataWithWait(data, 3));
         }
     };

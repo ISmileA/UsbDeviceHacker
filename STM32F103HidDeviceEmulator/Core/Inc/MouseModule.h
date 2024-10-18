@@ -5,8 +5,8 @@
  *      Author: arsen
  */
 
-#ifndef INC_MOUSECONTROLLER_H_
-#define INC_MOUSECONTROLLER_H_
+#ifndef INC_MOUSEMODULE_H_
+#define INC_MOUSEMODULE_H_
 
 #include "UsartController.h"
 #include "usbd_hid.h"
@@ -18,4 +18,4 @@ void MouseClick(uint8_t buttons);
 void MouseRemove();
 
 
-#endif /* INC_MOUSECONTROLLER_H_ */
+#endif /* INC_MOUSEMODULE_H_ */

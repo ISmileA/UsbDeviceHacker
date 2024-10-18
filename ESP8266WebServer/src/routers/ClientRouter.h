@@ -12,6 +12,7 @@ void InitRouter(){
     server.on("/mouse/click", Mouse::click);
     server.on("/keyboard/set", Keyboard::set);
     server.on("/keyboard/remove", Keyboard::remove);
+    server.on("/keyboard/click", Keyboard::click);
     server.on("/animation/set", Animation::set);
     server.on("/animation/remove", Animation::remove);
 

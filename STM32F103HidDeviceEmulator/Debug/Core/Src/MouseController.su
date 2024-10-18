@@ -1,4 +1,0 @@
-../Core/Src/MouseController.c:11:6:MouseCommandSetup	16	static
-../Core/Src/MouseController.c:25:6:MouseSet	24	static
-../Core/Src/MouseController.c:32:6:MouseClick	24	static
-../Core/Src/MouseController.c:39:6:MouseRemove	16	static

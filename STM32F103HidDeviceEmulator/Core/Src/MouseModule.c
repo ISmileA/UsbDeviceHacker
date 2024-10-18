@@ -5,7 +5,7 @@
  *      Author: arsen
  */
 
-#include "MouseController.h"
+#include <MouseModule.h>
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 void MouseCommandSetup(Action *act){

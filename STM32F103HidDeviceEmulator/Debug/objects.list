@@ -1,4 +1,5 @@
-"./Core/Src/MouseController.o"
+"./Core/Src/KeyboardModule.o"
+"./Core/Src/MouseModule.o"
 "./Core/Src/UsartController.o"
 "./Core/Src/UsartRouter.o"
 "./Core/Src/gpio.o"

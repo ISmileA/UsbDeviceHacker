@@ -2,7 +2,7 @@
 
 #include "main.h"
 #include "ArduinoJson.h"
-#include "modules/ClientProcessing.h"
+#include "modules/ClientProcessingModule.h"
 #include "modules/SerialModule.h"
 #include "configs/SerialConfig.h"
 

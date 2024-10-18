@@ -2,7 +2,9 @@
 #include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
-#include "MouseController.h"
+
+#include "MouseModule.h"
+#include "KeyboardModule.h"
 
 extern UART_HandleTypeDef huart3;
 
@@ -28,6 +30,8 @@ int main(void)
 				action.device = 0;
 				break;
 			case(KEYBOARD):
+				KeyboardSetup(&action);
+				action.device = 0;
 				break;
 			case(ANIMATION):
 				break;
