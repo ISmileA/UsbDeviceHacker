@@ -19,8 +19,8 @@ namespace Animation{
             uint8 data[32] = {};
             data[0] = ANIMATION;
             data[1] = SET_COMMAND; 
-            animate.AnimationSetup(&parsed, data);
-            cpr.AnswerClient(serial.SendDataWithWait(data, data[2]+3));
+            if(animate.AnimationSetup(&parsed, data))
+                cpr.AnswerClient(serial.SendDataWithWait(data, data[2]+3));
         }
     };
     void remove(){

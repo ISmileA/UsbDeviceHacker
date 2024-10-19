@@ -3,22 +3,27 @@
 
 AnimationData animation;
 
-void AnimationModule::AnimationSetup(JsonDocument *parsed, uint8_t *data){
+bool AnimationModule::AnimationSetup(JsonDocument *parsed, uint8_t *data){
     animation.parsed = *parsed;
     animation.data = data;
     switch((uint8_t)animation.parsed["id"]){
         case(MOUSE_MOVE_ANIMATION):
-            MouseMoveAnimation();
-            break;
+            return MouseMoveAnimation();;
         default:
-            server.send(400, cpr.error("Error body").c_str());
+            server.send(400, "aplication/json", cpr.error("Error id").c_str());
+            return false;
     }
 }
 
-void AnimationModule::MouseMoveAnimation(){
+bool AnimationModule::MouseMoveAnimation(){
+    const char* direction = animation.parsed["direction"];
     animation.data[2] = 4;
     animation.data[3] = (uint8_t)animation.parsed["id"];
-    animation.data[4] = (uint8_t)animation.parsed["direction"];
+    animation.data[4] = (uint8_t)direction[0];
     animation.data[5] = (uint8_t)animation.parsed["buttons"];
     animation.data[6] = (uint8_t)animation.parsed["speed"];
+    if (direction[0] == 'r' || direction[0] == 'l' || direction[0] == 't' || direction[0] == 'b')
+        return true;
+    server.send(400, "aplication/json", cpr.error("Error direction").c_str());
+    return false;
 }

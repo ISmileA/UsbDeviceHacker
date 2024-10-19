@@ -1,3 +1,4 @@
+"./Core/Src/AnimationModule.o"
 "./Core/Src/KeyboardModule.o"
 "./Core/Src/MouseModule.o"
 "./Core/Src/UsartController.o"

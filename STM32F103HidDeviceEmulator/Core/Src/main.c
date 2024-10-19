@@ -5,11 +5,13 @@
 
 #include "MouseModule.h"
 #include "KeyboardModule.h"
+#include "AnimationModule.h"
 
 extern UART_HandleTypeDef huart3;
 
 uint8_t rxcall;
-Action action = {0, 0, {}};
+Action action = {0, 0, 0, {}};
+Animation animation = {0, {}};
 
 void SystemClock_Config(void);
 
@@ -34,8 +36,11 @@ int main(void)
 				action.device = 0;
 				break;
 			case(ANIMATION):
+				AnimationSetup(&action);
+				action.device = 0;
 				break;
 		}
+		Animate();
 	}
 }
 

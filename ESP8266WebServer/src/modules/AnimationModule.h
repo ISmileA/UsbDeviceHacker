@@ -14,8 +14,8 @@ class AnimationModule
 {
 private:
     ClientProcessing cpr;
-    void MouseMoveAnimation();
+    bool MouseMoveAnimation();
 public:
-    void AnimationSetup(JsonDocument *parsed, uint8_t *data);
+    bool AnimationSetup(JsonDocument *parsed, uint8_t *data);
 };
 
