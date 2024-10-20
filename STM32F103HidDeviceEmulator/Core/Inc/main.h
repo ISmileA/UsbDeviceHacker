@@ -16,7 +16,8 @@ typedef struct{
 
 typedef struct {
 	uint8_t id;
-	uint8_t data[32];
+	uint8_t length;
+	uint8_t data[512];
 } Animation;
 
 extern uint8_t rxcall;

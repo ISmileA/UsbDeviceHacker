@@ -11,7 +11,7 @@ extern UART_HandleTypeDef huart3;
 
 uint8_t rxcall;
 Action action = {0, 0, 0, {}};
-Animation animation = {0, {}};
+Animation animation = {0, 0, {}};
 
 void SystemClock_Config(void);
 
