@@ -21,15 +21,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .data         00000190  20000000  08008968  0000a000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000a70  20000190  08008af8  0000a190  2**2
+  9 .bss          00000a74  20000190  08008af8  0000a190  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000c00  08008af8  0000ac00  2**0
+ 10 ._user_heap_stack 00000604  20000c04  08008af8  0000ac04  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0000a190  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00011797  00000000  00000000  0000a1b9  2**0
+ 12 .debug_info   0001179d  00000000  00000000  0000a1b9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000038bb  00000000  00000000  0001b950  2**0
+ 13 .debug_abbrev 000038b9  00000000  00000000  0001b956  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_aranges 00000de8  00000000  00000000  0001f210  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001a5e9  00000000  00000000  00020a49  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00017056  00000000  00000000  0003b032  2**0
+ 17 .debug_line   00017048  00000000  00000000  0003b032  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0008726a  00000000  00000000  00052088  2**0
+ 18 .debug_str    0008726c  00000000  00000000  0005207a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000d92f2  2**0
+ 19 .comment      00000043  00000000  00000000  000d92e6  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003520  00000000  00000000  000d9338  2**2
+ 20 .debug_frame  00003520  00000000  00000000  000d932c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  000dc858  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  000dc84c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -80,9 +80,9 @@ Disassembly of section .text:
 
 0800014c <AnimationSetup>:
 extern USBD_HandleTypeDef hUsbDeviceFS;
-uint8_t time = 0;
+uint32_t time = 0;
 uint8_t flag = 1;
-uint8_t data_set = 0;
+uint16_t data_set = 0;
 
 void AnimationSetup(Action *act){
  800014c:	b580      	push	{r7, lr}
@@ -114,7 +114,7 @@ void AnimationSetup(Action *act){
 				break;
  8000172:	e002      	b.n	800017a <AnimationSetup+0x2e>
 				AnimationRemove();
- 8000174:	f000 f832 	bl	80001dc <AnimationRemove>
+ 8000174:	f000 f838 	bl	80001e8 <AnimationRemove>
 				break;
  8000178:	bf00      	nop
 }
@@ -133,325 +133,328 @@ void AnimationSet(uint8_t *data, uint8_t len){
  800018a:	6078      	str	r0, [r7, #4]
  800018c:	460b      	mov	r3, r1
  800018e:	70fb      	strb	r3, [r7, #3]
+	flag = 1;
+ 8000190:	4b13      	ldr	r3, [pc, #76]	@ (80001e0 <AnimationSet+0x5c>)
+ 8000192:	2201      	movs	r2, #1
+ 8000194:	701a      	strb	r2, [r3, #0]
 	animation.id = data[0];
- 8000190:	687b      	ldr	r3, [r7, #4]
- 8000192:	781a      	ldrb	r2, [r3, #0]
- 8000194:	4b10      	ldr	r3, [pc, #64]	@ (80001d8 <AnimationSet+0x54>)
- 8000196:	701a      	strb	r2, [r3, #0]
+ 8000196:	687b      	ldr	r3, [r7, #4]
+ 8000198:	781a      	ldrb	r2, [r3, #0]
+ 800019a:	4b12      	ldr	r3, [pc, #72]	@ (80001e4 <AnimationSet+0x60>)
+ 800019c:	701a      	strb	r2, [r3, #0]
 	animation.length = len-1;
- 8000198:	78fb      	ldrb	r3, [r7, #3]
- 800019a:	3b01      	subs	r3, #1
- 800019c:	b2da      	uxtb	r2, r3
- 800019e:	4b0e      	ldr	r3, [pc, #56]	@ (80001d8 <AnimationSet+0x54>)
- 80001a0:	705a      	strb	r2, [r3, #1]
+ 800019e:	78fb      	ldrb	r3, [r7, #3]
+ 80001a0:	3b01      	subs	r3, #1
+ 80001a2:	b2da      	uxtb	r2, r3
+ 80001a4:	4b0f      	ldr	r3, [pc, #60]	@ (80001e4 <AnimationSet+0x60>)
+ 80001a6:	705a      	strb	r2, [r3, #1]
 	for(uint8_t i=0; i<len-1; i++)
- 80001a2:	2300      	movs	r3, #0
- 80001a4:	73fb      	strb	r3, [r7, #15]
- 80001a6:	e00c      	b.n	80001c2 <AnimationSet+0x3e>
+ 80001a8:	2300      	movs	r3, #0
+ 80001aa:	73fb      	strb	r3, [r7, #15]
+ 80001ac:	e00c      	b.n	80001c8 <AnimationSet+0x44>
 		animation.data[i] = data[i+1];
- 80001a8:	7bfb      	ldrb	r3, [r7, #15]
- 80001aa:	3301      	adds	r3, #1
- 80001ac:	687a      	ldr	r2, [r7, #4]
- 80001ae:	441a      	add	r2, r3
- 80001b0:	7bfb      	ldrb	r3, [r7, #15]
- 80001b2:	7811      	ldrb	r1, [r2, #0]
- 80001b4:	4a08      	ldr	r2, [pc, #32]	@ (80001d8 <AnimationSet+0x54>)
- 80001b6:	4413      	add	r3, r2
- 80001b8:	460a      	mov	r2, r1
- 80001ba:	709a      	strb	r2, [r3, #2]
+ 80001ae:	7bfb      	ldrb	r3, [r7, #15]
+ 80001b0:	3301      	adds	r3, #1
+ 80001b2:	687a      	ldr	r2, [r7, #4]
+ 80001b4:	441a      	add	r2, r3
+ 80001b6:	7bfb      	ldrb	r3, [r7, #15]
+ 80001b8:	7811      	ldrb	r1, [r2, #0]
+ 80001ba:	4a0a      	ldr	r2, [pc, #40]	@ (80001e4 <AnimationSet+0x60>)
+ 80001bc:	4413      	add	r3, r2
+ 80001be:	460a      	mov	r2, r1
+ 80001c0:	709a      	strb	r2, [r3, #2]
 	for(uint8_t i=0; i<len-1; i++)
- 80001bc:	7bfb      	ldrb	r3, [r7, #15]
- 80001be:	3301      	adds	r3, #1
- 80001c0:	73fb      	strb	r3, [r7, #15]
- 80001c2:	7bfa      	ldrb	r2, [r7, #15]
- 80001c4:	78fb      	ldrb	r3, [r7, #3]
- 80001c6:	3b01      	subs	r3, #1
- 80001c8:	429a      	cmp	r2, r3
- 80001ca:	dbed      	blt.n	80001a8 <AnimationSet+0x24>
+ 80001c2:	7bfb      	ldrb	r3, [r7, #15]
+ 80001c4:	3301      	adds	r3, #1
+ 80001c6:	73fb      	strb	r3, [r7, #15]
+ 80001c8:	7bfa      	ldrb	r2, [r7, #15]
+ 80001ca:	78fb      	ldrb	r3, [r7, #3]
+ 80001cc:	3b01      	subs	r3, #1
+ 80001ce:	429a      	cmp	r2, r3
+ 80001d0:	dbed      	blt.n	80001ae <AnimationSet+0x2a>
 }
- 80001cc:	bf00      	nop
- 80001ce:	bf00      	nop
- 80001d0:	3714      	adds	r7, #20
- 80001d2:	46bd      	mov	sp, r7
- 80001d4:	bc80      	pop	{r7}
- 80001d6:	4770      	bx	lr
- 80001d8:	200001fc 	.word	0x200001fc
+ 80001d2:	bf00      	nop
+ 80001d4:	bf00      	nop
+ 80001d6:	3714      	adds	r7, #20
+ 80001d8:	46bd      	mov	sp, r7
+ 80001da:	bc80      	pop	{r7}
+ 80001dc:	4770      	bx	lr
+ 80001de:	bf00      	nop
+ 80001e0:	20000000 	.word	0x20000000
+ 80001e4:	20000200 	.word	0x20000200
 
-080001dc <AnimationRemove>:
+080001e8 <AnimationRemove>:
 
 void AnimationRemove(){
- 80001dc:	b480      	push	{r7}
- 80001de:	af00      	add	r7, sp, #0
+ 80001e8:	b480      	push	{r7}
+ 80001ea:	af00      	add	r7, sp, #0
 	animation.id = 0;
- 80001e0:	4b03      	ldr	r3, [pc, #12]	@ (80001f0 <AnimationRemove+0x14>)
- 80001e2:	2200      	movs	r2, #0
- 80001e4:	701a      	strb	r2, [r3, #0]
+ 80001ec:	4b03      	ldr	r3, [pc, #12]	@ (80001fc <AnimationRemove+0x14>)
+ 80001ee:	2200      	movs	r2, #0
+ 80001f0:	701a      	strb	r2, [r3, #0]
 }
- 80001e6:	bf00      	nop
- 80001e8:	46bd      	mov	sp, r7
- 80001ea:	bc80      	pop	{r7}
- 80001ec:	4770      	bx	lr
- 80001ee:	bf00      	nop
- 80001f0:	200001fc 	.word	0x200001fc
+ 80001f2:	bf00      	nop
+ 80001f4:	46bd      	mov	sp, r7
+ 80001f6:	bc80      	pop	{r7}
+ 80001f8:	4770      	bx	lr
+ 80001fa:	bf00      	nop
+ 80001fc:	20000200 	.word	0x20000200
 
-080001f4 <Animate>:
+08000200 <Animate>:
 
 void Animate(){
- 80001f4:	b580      	push	{r7, lr}
- 80001f6:	af00      	add	r7, sp, #0
+ 8000200:	b580      	push	{r7, lr}
+ 8000202:	af00      	add	r7, sp, #0
 	switch(animation.id){
- 80001f8:	4b08      	ldr	r3, [pc, #32]	@ (800021c <Animate+0x28>)
- 80001fa:	781b      	ldrb	r3, [r3, #0]
- 80001fc:	2b01      	cmp	r3, #1
- 80001fe:	d002      	beq.n	8000206 <Animate+0x12>
- 8000200:	2b02      	cmp	r3, #2
- 8000202:	d003      	beq.n	800020c <Animate+0x18>
-//			flag = 1;
-		    data_set = 0;
+ 8000204:	4b07      	ldr	r3, [pc, #28]	@ (8000224 <Animate+0x24>)
+ 8000206:	781b      	ldrb	r3, [r3, #0]
+ 8000208:	2b01      	cmp	r3, #1
+ 800020a:	d002      	beq.n	8000212 <Animate+0x12>
+ 800020c:	2b02      	cmp	r3, #2
+ 800020e:	d003      	beq.n	8000218 <Animate+0x18>
+			break;
+		case(KEYBOARD_TEXT_ANIMATION):
 			KeyboardTextAnimation();
 			break;
 	}
 }
- 8000204:	e008      	b.n	8000218 <Animate+0x24>
+ 8000210:	e005      	b.n	800021e <Animate+0x1e>
 			MouseMoveAnimation();
- 8000206:	f000 f80d 	bl	8000224 <MouseMoveAnimation>
+ 8000212:	f000 f809 	bl	8000228 <MouseMoveAnimation>
 			break;
- 800020a:	e005      	b.n	8000218 <Animate+0x24>
-		    data_set = 0;
- 800020c:	4b04      	ldr	r3, [pc, #16]	@ (8000220 <Animate+0x2c>)
- 800020e:	2200      	movs	r2, #0
- 8000210:	701a      	strb	r2, [r3, #0]
+ 8000216:	e002      	b.n	800021e <Animate+0x1e>
 			KeyboardTextAnimation();
- 8000212:	f000 f883 	bl	800031c <KeyboardTextAnimation>
+ 8000218:	f000 f882 	bl	8000320 <KeyboardTextAnimation>
 			break;
- 8000216:	bf00      	nop
+ 800021c:	bf00      	nop
 }
- 8000218:	bf00      	nop
- 800021a:	bd80      	pop	{r7, pc}
- 800021c:	200001fc 	.word	0x200001fc
- 8000220:	200001ad 	.word	0x200001ad
+ 800021e:	bf00      	nop
+ 8000220:	bd80      	pop	{r7, pc}
+ 8000222:	bf00      	nop
+ 8000224:	20000200 	.word	0x20000200
 
-08000224 <MouseMoveAnimation>:
+08000228 <MouseMoveAnimation>:
 
 void MouseMoveAnimation(){
- 8000224:	b580      	push	{r7, lr}
- 8000226:	b082      	sub	sp, #8
- 8000228:	af00      	add	r7, sp, #0
+ 8000228:	b580      	push	{r7, lr}
+ 800022a:	b082      	sub	sp, #8
+ 800022c:	af00      	add	r7, sp, #0
 	if((HAL_GetTick()-time) >= 10){
- 800022a:	f000 fd85 	bl	8000d38 <HAL_GetTick>
- 800022e:	4603      	mov	r3, r0
- 8000230:	4a37      	ldr	r2, [pc, #220]	@ (8000310 <MouseMoveAnimation+0xec>)
- 8000232:	7812      	ldrb	r2, [r2, #0]
- 8000234:	1a9b      	subs	r3, r3, r2
- 8000236:	2b09      	cmp	r3, #9
- 8000238:	d966      	bls.n	8000308 <MouseMoveAnimation+0xe4>
+ 800022e:	f000 fd83 	bl	8000d38 <HAL_GetTick>
+ 8000232:	4602      	mov	r2, r0
+ 8000234:	4b37      	ldr	r3, [pc, #220]	@ (8000314 <MouseMoveAnimation+0xec>)
+ 8000236:	681b      	ldr	r3, [r3, #0]
+ 8000238:	1ad3      	subs	r3, r2, r3
+ 800023a:	2b09      	cmp	r3, #9
+ 800023c:	d965      	bls.n	800030a <MouseMoveAnimation+0xe2>
 		uint8_t data_out[5] = {0x01, animation.data[1], 0, 0, 0};
- 800023a:	2301      	movs	r3, #1
- 800023c:	703b      	strb	r3, [r7, #0]
- 800023e:	4b35      	ldr	r3, [pc, #212]	@ (8000314 <MouseMoveAnimation+0xf0>)
- 8000240:	78db      	ldrb	r3, [r3, #3]
- 8000242:	707b      	strb	r3, [r7, #1]
- 8000244:	2300      	movs	r3, #0
- 8000246:	70bb      	strb	r3, [r7, #2]
+ 800023e:	2301      	movs	r3, #1
+ 8000240:	703b      	strb	r3, [r7, #0]
+ 8000242:	4b35      	ldr	r3, [pc, #212]	@ (8000318 <MouseMoveAnimation+0xf0>)
+ 8000244:	78db      	ldrb	r3, [r3, #3]
+ 8000246:	707b      	strb	r3, [r7, #1]
  8000248:	2300      	movs	r3, #0
- 800024a:	70fb      	strb	r3, [r7, #3]
+ 800024a:	70bb      	strb	r3, [r7, #2]
  800024c:	2300      	movs	r3, #0
- 800024e:	713b      	strb	r3, [r7, #4]
+ 800024e:	70fb      	strb	r3, [r7, #3]
+ 8000250:	2300      	movs	r3, #0
+ 8000252:	713b      	strb	r3, [r7, #4]
 		switch((char)animation.data[0]){
- 8000250:	4b30      	ldr	r3, [pc, #192]	@ (8000314 <MouseMoveAnimation+0xf0>)
- 8000252:	789b      	ldrb	r3, [r3, #2]
- 8000254:	3b62      	subs	r3, #98	@ 0x62
- 8000256:	2b12      	cmp	r3, #18
- 8000258:	d84a      	bhi.n	80002f0 <MouseMoveAnimation+0xcc>
- 800025a:	a201      	add	r2, pc, #4	@ (adr r2, 8000260 <MouseMoveAnimation+0x3c>)
- 800025c:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 8000260:	080002cf 	.word	0x080002cf
- 8000264:	080002f1 	.word	0x080002f1
- 8000268:	080002f1 	.word	0x080002f1
- 800026c:	080002f1 	.word	0x080002f1
- 8000270:	080002f1 	.word	0x080002f1
- 8000274:	080002f1 	.word	0x080002f1
- 8000278:	080002f1 	.word	0x080002f1
- 800027c:	080002f1 	.word	0x080002f1
- 8000280:	080002f1 	.word	0x080002f1
- 8000284:	080002f1 	.word	0x080002f1
- 8000288:	080002bd 	.word	0x080002bd
- 800028c:	080002f1 	.word	0x080002f1
- 8000290:	080002f1 	.word	0x080002f1
- 8000294:	080002f1 	.word	0x080002f1
- 8000298:	080002f1 	.word	0x080002f1
- 800029c:	080002f1 	.word	0x080002f1
- 80002a0:	080002ad 	.word	0x080002ad
- 80002a4:	080002f1 	.word	0x080002f1
- 80002a8:	080002df 	.word	0x080002df
+ 8000254:	4b30      	ldr	r3, [pc, #192]	@ (8000318 <MouseMoveAnimation+0xf0>)
+ 8000256:	789b      	ldrb	r3, [r3, #2]
+ 8000258:	3b62      	subs	r3, #98	@ 0x62
+ 800025a:	2b12      	cmp	r3, #18
+ 800025c:	d84a      	bhi.n	80002f4 <MouseMoveAnimation+0xcc>
+ 800025e:	a201      	add	r2, pc, #4	@ (adr r2, 8000264 <MouseMoveAnimation+0x3c>)
+ 8000260:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8000264:	080002d3 	.word	0x080002d3
+ 8000268:	080002f5 	.word	0x080002f5
+ 800026c:	080002f5 	.word	0x080002f5
+ 8000270:	080002f5 	.word	0x080002f5
+ 8000274:	080002f5 	.word	0x080002f5
+ 8000278:	080002f5 	.word	0x080002f5
+ 800027c:	080002f5 	.word	0x080002f5
+ 8000280:	080002f5 	.word	0x080002f5
+ 8000284:	080002f5 	.word	0x080002f5
+ 8000288:	080002f5 	.word	0x080002f5
+ 800028c:	080002c1 	.word	0x080002c1
+ 8000290:	080002f5 	.word	0x080002f5
+ 8000294:	080002f5 	.word	0x080002f5
+ 8000298:	080002f5 	.word	0x080002f5
+ 800029c:	080002f5 	.word	0x080002f5
+ 80002a0:	080002f5 	.word	0x080002f5
+ 80002a4:	080002b1 	.word	0x080002b1
+ 80002a8:	080002f5 	.word	0x080002f5
+ 80002ac:	080002e3 	.word	0x080002e3
 			case('r'):
 				data_out[2] = 1+2*animation.data[2];
- 80002ac:	4b19      	ldr	r3, [pc, #100]	@ (8000314 <MouseMoveAnimation+0xf0>)
- 80002ae:	791b      	ldrb	r3, [r3, #4]
- 80002b0:	005b      	lsls	r3, r3, #1
- 80002b2:	b2db      	uxtb	r3, r3
- 80002b4:	3301      	adds	r3, #1
+ 80002b0:	4b19      	ldr	r3, [pc, #100]	@ (8000318 <MouseMoveAnimation+0xf0>)
+ 80002b2:	791b      	ldrb	r3, [r3, #4]
+ 80002b4:	005b      	lsls	r3, r3, #1
  80002b6:	b2db      	uxtb	r3, r3
- 80002b8:	70bb      	strb	r3, [r7, #2]
+ 80002b8:	3301      	adds	r3, #1
+ 80002ba:	b2db      	uxtb	r3, r3
+ 80002bc:	70bb      	strb	r3, [r7, #2]
 				break;
- 80002ba:	e019      	b.n	80002f0 <MouseMoveAnimation+0xcc>
+ 80002be:	e019      	b.n	80002f4 <MouseMoveAnimation+0xcc>
 			case('l'):
 				data_out[2] = 254-2*animation.data[2];
- 80002bc:	4b15      	ldr	r3, [pc, #84]	@ (8000314 <MouseMoveAnimation+0xf0>)
- 80002be:	791b      	ldrb	r3, [r3, #4]
- 80002c0:	f1c3 037f 	rsb	r3, r3, #127	@ 0x7f
- 80002c4:	b2db      	uxtb	r3, r3
- 80002c6:	005b      	lsls	r3, r3, #1
+ 80002c0:	4b15      	ldr	r3, [pc, #84]	@ (8000318 <MouseMoveAnimation+0xf0>)
+ 80002c2:	791b      	ldrb	r3, [r3, #4]
+ 80002c4:	f1c3 037f 	rsb	r3, r3, #127	@ 0x7f
  80002c8:	b2db      	uxtb	r3, r3
- 80002ca:	70bb      	strb	r3, [r7, #2]
+ 80002ca:	005b      	lsls	r3, r3, #1
+ 80002cc:	b2db      	uxtb	r3, r3
+ 80002ce:	70bb      	strb	r3, [r7, #2]
 				break;
- 80002cc:	e010      	b.n	80002f0 <MouseMoveAnimation+0xcc>
+ 80002d0:	e010      	b.n	80002f4 <MouseMoveAnimation+0xcc>
 			case('b'):
 				data_out[3] = 1+2*animation.data[2];
- 80002ce:	4b11      	ldr	r3, [pc, #68]	@ (8000314 <MouseMoveAnimation+0xf0>)
- 80002d0:	791b      	ldrb	r3, [r3, #4]
- 80002d2:	005b      	lsls	r3, r3, #1
- 80002d4:	b2db      	uxtb	r3, r3
- 80002d6:	3301      	adds	r3, #1
+ 80002d2:	4b11      	ldr	r3, [pc, #68]	@ (8000318 <MouseMoveAnimation+0xf0>)
+ 80002d4:	791b      	ldrb	r3, [r3, #4]
+ 80002d6:	005b      	lsls	r3, r3, #1
  80002d8:	b2db      	uxtb	r3, r3
- 80002da:	70fb      	strb	r3, [r7, #3]
+ 80002da:	3301      	adds	r3, #1
+ 80002dc:	b2db      	uxtb	r3, r3
+ 80002de:	70fb      	strb	r3, [r7, #3]
 				break;
- 80002dc:	e008      	b.n	80002f0 <MouseMoveAnimation+0xcc>
+ 80002e0:	e008      	b.n	80002f4 <MouseMoveAnimation+0xcc>
 			case('t'):
 				data_out[3] = 254-2*animation.data[2];
- 80002de:	4b0d      	ldr	r3, [pc, #52]	@ (8000314 <MouseMoveAnimation+0xf0>)
- 80002e0:	791b      	ldrb	r3, [r3, #4]
- 80002e2:	f1c3 037f 	rsb	r3, r3, #127	@ 0x7f
- 80002e6:	b2db      	uxtb	r3, r3
- 80002e8:	005b      	lsls	r3, r3, #1
+ 80002e2:	4b0d      	ldr	r3, [pc, #52]	@ (8000318 <MouseMoveAnimation+0xf0>)
+ 80002e4:	791b      	ldrb	r3, [r3, #4]
+ 80002e6:	f1c3 037f 	rsb	r3, r3, #127	@ 0x7f
  80002ea:	b2db      	uxtb	r3, r3
- 80002ec:	70fb      	strb	r3, [r7, #3]
+ 80002ec:	005b      	lsls	r3, r3, #1
+ 80002ee:	b2db      	uxtb	r3, r3
+ 80002f0:	70fb      	strb	r3, [r7, #3]
 				break;
- 80002ee:	bf00      	nop
+ 80002f2:	bf00      	nop
 		}
 		USBD_HID_SendReport(&hUsbDeviceFS, data_out, 5);
- 80002f0:	463b      	mov	r3, r7
- 80002f2:	2205      	movs	r2, #5
- 80002f4:	4619      	mov	r1, r3
- 80002f6:	4808      	ldr	r0, [pc, #32]	@ (8000318 <MouseMoveAnimation+0xf4>)
- 80002f8:	f007 fe28 	bl	8007f4c <USBD_HID_SendReport>
+ 80002f4:	463b      	mov	r3, r7
+ 80002f6:	2205      	movs	r2, #5
+ 80002f8:	4619      	mov	r1, r3
+ 80002fa:	4808      	ldr	r0, [pc, #32]	@ (800031c <MouseMoveAnimation+0xf4>)
+ 80002fc:	f007 fe26 	bl	8007f4c <USBD_HID_SendReport>
 		time = HAL_GetTick();
- 80002fc:	f000 fd1c 	bl	8000d38 <HAL_GetTick>
- 8000300:	4603      	mov	r3, r0
- 8000302:	b2da      	uxtb	r2, r3
- 8000304:	4b02      	ldr	r3, [pc, #8]	@ (8000310 <MouseMoveAnimation+0xec>)
- 8000306:	701a      	strb	r2, [r3, #0]
+ 8000300:	f000 fd1a 	bl	8000d38 <HAL_GetTick>
+ 8000304:	4603      	mov	r3, r0
+ 8000306:	4a03      	ldr	r2, [pc, #12]	@ (8000314 <MouseMoveAnimation+0xec>)
+ 8000308:	6013      	str	r3, [r2, #0]
 	}
 }
- 8000308:	bf00      	nop
- 800030a:	3708      	adds	r7, #8
- 800030c:	46bd      	mov	sp, r7
- 800030e:	bd80      	pop	{r7, pc}
- 8000310:	200001ac 	.word	0x200001ac
- 8000314:	200001fc 	.word	0x200001fc
- 8000318:	20000450 	.word	0x20000450
+ 800030a:	bf00      	nop
+ 800030c:	3708      	adds	r7, #8
+ 800030e:	46bd      	mov	sp, r7
+ 8000310:	bd80      	pop	{r7, pc}
+ 8000312:	bf00      	nop
+ 8000314:	200001ac 	.word	0x200001ac
+ 8000318:	20000200 	.word	0x20000200
+ 800031c:	20000454 	.word	0x20000454
 
-0800031c <KeyboardTextAnimation>:
+08000320 <KeyboardTextAnimation>:
 void KeyboardTextAnimation(){
- 800031c:	b580      	push	{r7, lr}
- 800031e:	b086      	sub	sp, #24
- 8000320:	af00      	add	r7, sp, #0
-	if((HAL_GetTick()-time) >= 1000 && flag == 1){
- 8000322:	f000 fd09 	bl	8000d38 <HAL_GetTick>
- 8000326:	4603      	mov	r3, r0
- 8000328:	4a2d      	ldr	r2, [pc, #180]	@ (80003e0 <KeyboardTextAnimation+0xc4>)
- 800032a:	7812      	ldrb	r2, [r2, #0]
- 800032c:	1a9b      	subs	r3, r3, r2
- 800032e:	f5b3 7f7a 	cmp.w	r3, #1000	@ 0x3e8
- 8000332:	d351      	bcc.n	80003d8 <KeyboardTextAnimation+0xbc>
- 8000334:	4b2b      	ldr	r3, [pc, #172]	@ (80003e4 <KeyboardTextAnimation+0xc8>)
- 8000336:	781b      	ldrb	r3, [r3, #0]
- 8000338:	2b01      	cmp	r3, #1
- 800033a:	d14d      	bne.n	80003d8 <KeyboardTextAnimation+0xbc>
-		uint8_t data_t[9] = {0x02, 0, animation.data[data_set+1], animation.data[data_set], 0, 0, 0, 0, 0};
- 800033c:	2302      	movs	r3, #2
- 800033e:	733b      	strb	r3, [r7, #12]
- 8000340:	2300      	movs	r3, #0
- 8000342:	737b      	strb	r3, [r7, #13]
- 8000344:	4b28      	ldr	r3, [pc, #160]	@ (80003e8 <KeyboardTextAnimation+0xcc>)
- 8000346:	781b      	ldrb	r3, [r3, #0]
- 8000348:	3301      	adds	r3, #1
- 800034a:	4a28      	ldr	r2, [pc, #160]	@ (80003ec <KeyboardTextAnimation+0xd0>)
- 800034c:	4413      	add	r3, r2
- 800034e:	789b      	ldrb	r3, [r3, #2]
- 8000350:	73bb      	strb	r3, [r7, #14]
- 8000352:	4b25      	ldr	r3, [pc, #148]	@ (80003e8 <KeyboardTextAnimation+0xcc>)
- 8000354:	781b      	ldrb	r3, [r3, #0]
- 8000356:	461a      	mov	r2, r3
- 8000358:	4b24      	ldr	r3, [pc, #144]	@ (80003ec <KeyboardTextAnimation+0xd0>)
- 800035a:	4413      	add	r3, r2
- 800035c:	789b      	ldrb	r3, [r3, #2]
- 800035e:	73fb      	strb	r3, [r7, #15]
- 8000360:	2300      	movs	r3, #0
- 8000362:	743b      	strb	r3, [r7, #16]
- 8000364:	2300      	movs	r3, #0
- 8000366:	747b      	strb	r3, [r7, #17]
- 8000368:	2300      	movs	r3, #0
- 800036a:	74bb      	strb	r3, [r7, #18]
- 800036c:	2300      	movs	r3, #0
- 800036e:	74fb      	strb	r3, [r7, #19]
- 8000370:	2300      	movs	r3, #0
- 8000372:	753b      	strb	r3, [r7, #20]
-		USBD_HID_SendReport(&hUsbDeviceFS, data_t, 9);
- 8000374:	f107 030c 	add.w	r3, r7, #12
- 8000378:	2209      	movs	r2, #9
- 800037a:	4619      	mov	r1, r3
- 800037c:	481c      	ldr	r0, [pc, #112]	@ (80003f0 <KeyboardTextAnimation+0xd4>)
- 800037e:	f007 fde5 	bl	8007f4c <USBD_HID_SendReport>
-		HAL_Delay(30);
- 8000382:	201e      	movs	r0, #30
- 8000384:	f000 fce2 	bl	8000d4c <HAL_Delay>
-		uint8_t data_out[9] = {0x02, 0, 0, 0, 0, 0, 0, 0, 0};
- 8000388:	4a1a      	ldr	r2, [pc, #104]	@ (80003f4 <KeyboardTextAnimation+0xd8>)
- 800038a:	463b      	mov	r3, r7
- 800038c:	ca07      	ldmia	r2, {r0, r1, r2}
- 800038e:	c303      	stmia	r3!, {r0, r1}
- 8000390:	701a      	strb	r2, [r3, #0]
-		USBD_HID_SendReport(&hUsbDeviceFS, data_out, 9);
- 8000392:	463b      	mov	r3, r7
- 8000394:	2209      	movs	r2, #9
- 8000396:	4619      	mov	r1, r3
- 8000398:	4815      	ldr	r0, [pc, #84]	@ (80003f0 <KeyboardTextAnimation+0xd4>)
- 800039a:	f007 fdd7 	bl	8007f4c <USBD_HID_SendReport>
-		HAL_Delay(30);
- 800039e:	201e      	movs	r0, #30
- 80003a0:	f000 fcd4 	bl	8000d4c <HAL_Delay>
-		data_set+=2;
- 80003a4:	4b10      	ldr	r3, [pc, #64]	@ (80003e8 <KeyboardTextAnimation+0xcc>)
- 80003a6:	781b      	ldrb	r3, [r3, #0]
- 80003a8:	3302      	adds	r3, #2
- 80003aa:	b2da      	uxtb	r2, r3
- 80003ac:	4b0e      	ldr	r3, [pc, #56]	@ (80003e8 <KeyboardTextAnimation+0xcc>)
- 80003ae:	701a      	strb	r2, [r3, #0]
-		if(data_set>=animation.length-1){
- 80003b0:	4b0d      	ldr	r3, [pc, #52]	@ (80003e8 <KeyboardTextAnimation+0xcc>)
- 80003b2:	781b      	ldrb	r3, [r3, #0]
- 80003b4:	461a      	mov	r2, r3
- 80003b6:	4b0d      	ldr	r3, [pc, #52]	@ (80003ec <KeyboardTextAnimation+0xd0>)
- 80003b8:	785b      	ldrb	r3, [r3, #1]
- 80003ba:	3b01      	subs	r3, #1
- 80003bc:	429a      	cmp	r2, r3
- 80003be:	db05      	blt.n	80003cc <KeyboardTextAnimation+0xb0>
-			data_set = 0;
- 80003c0:	4b09      	ldr	r3, [pc, #36]	@ (80003e8 <KeyboardTextAnimation+0xcc>)
- 80003c2:	2200      	movs	r2, #0
- 80003c4:	701a      	strb	r2, [r3, #0]
-			flag = 0;
- 80003c6:	4b07      	ldr	r3, [pc, #28]	@ (80003e4 <KeyboardTextAnimation+0xc8>)
- 80003c8:	2200      	movs	r2, #0
- 80003ca:	701a      	strb	r2, [r3, #0]
+ 8000320:	b580      	push	{r7, lr}
+ 8000322:	b086      	sub	sp, #24
+ 8000324:	af00      	add	r7, sp, #0
+	if((HAL_GetTick()-time) > 5){
+ 8000326:	f000 fd07 	bl	8000d38 <HAL_GetTick>
+ 800032a:	4602      	mov	r2, r0
+ 800032c:	4b2c      	ldr	r3, [pc, #176]	@ (80003e0 <KeyboardTextAnimation+0xc0>)
+ 800032e:	681b      	ldr	r3, [r3, #0]
+ 8000330:	1ad3      	subs	r3, r2, r3
+ 8000332:	2b05      	cmp	r3, #5
+ 8000334:	d950      	bls.n	80003d8 <KeyboardTextAnimation+0xb8>
+		if(flag){
+ 8000336:	4b2b      	ldr	r3, [pc, #172]	@ (80003e4 <KeyboardTextAnimation+0xc4>)
+ 8000338:	781b      	ldrb	r3, [r3, #0]
+ 800033a:	2b00      	cmp	r3, #0
+ 800033c:	d047      	beq.n	80003ce <KeyboardTextAnimation+0xae>
+			uint8_t data_out[9] = {0x02, animation.data[data_set+1], 0, animation.data[data_set], 0, 0, 0, 0, 0};
+ 800033e:	2302      	movs	r3, #2
+ 8000340:	733b      	strb	r3, [r7, #12]
+ 8000342:	4b29      	ldr	r3, [pc, #164]	@ (80003e8 <KeyboardTextAnimation+0xc8>)
+ 8000344:	881b      	ldrh	r3, [r3, #0]
+ 8000346:	3301      	adds	r3, #1
+ 8000348:	4a28      	ldr	r2, [pc, #160]	@ (80003ec <KeyboardTextAnimation+0xcc>)
+ 800034a:	4413      	add	r3, r2
+ 800034c:	789b      	ldrb	r3, [r3, #2]
+ 800034e:	737b      	strb	r3, [r7, #13]
+ 8000350:	2300      	movs	r3, #0
+ 8000352:	73bb      	strb	r3, [r7, #14]
+ 8000354:	4b24      	ldr	r3, [pc, #144]	@ (80003e8 <KeyboardTextAnimation+0xc8>)
+ 8000356:	881b      	ldrh	r3, [r3, #0]
+ 8000358:	461a      	mov	r2, r3
+ 800035a:	4b24      	ldr	r3, [pc, #144]	@ (80003ec <KeyboardTextAnimation+0xcc>)
+ 800035c:	4413      	add	r3, r2
+ 800035e:	789b      	ldrb	r3, [r3, #2]
+ 8000360:	73fb      	strb	r3, [r7, #15]
+ 8000362:	2300      	movs	r3, #0
+ 8000364:	743b      	strb	r3, [r7, #16]
+ 8000366:	2300      	movs	r3, #0
+ 8000368:	747b      	strb	r3, [r7, #17]
+ 800036a:	2300      	movs	r3, #0
+ 800036c:	74bb      	strb	r3, [r7, #18]
+ 800036e:	2300      	movs	r3, #0
+ 8000370:	74fb      	strb	r3, [r7, #19]
+ 8000372:	2300      	movs	r3, #0
+ 8000374:	753b      	strb	r3, [r7, #20]
+			data_set+=2;
+ 8000376:	4b1c      	ldr	r3, [pc, #112]	@ (80003e8 <KeyboardTextAnimation+0xc8>)
+ 8000378:	881b      	ldrh	r3, [r3, #0]
+ 800037a:	3302      	adds	r3, #2
+ 800037c:	b29a      	uxth	r2, r3
+ 800037e:	4b1a      	ldr	r3, [pc, #104]	@ (80003e8 <KeyboardTextAnimation+0xc8>)
+ 8000380:	801a      	strh	r2, [r3, #0]
+			if(data_set >= animation.length-1){
+ 8000382:	4b19      	ldr	r3, [pc, #100]	@ (80003e8 <KeyboardTextAnimation+0xc8>)
+ 8000384:	881b      	ldrh	r3, [r3, #0]
+ 8000386:	461a      	mov	r2, r3
+ 8000388:	4b18      	ldr	r3, [pc, #96]	@ (80003ec <KeyboardTextAnimation+0xcc>)
+ 800038a:	785b      	ldrb	r3, [r3, #1]
+ 800038c:	3b01      	subs	r3, #1
+ 800038e:	429a      	cmp	r2, r3
+ 8000390:	db05      	blt.n	800039e <KeyboardTextAnimation+0x7e>
+				data_set = 0;
+ 8000392:	4b15      	ldr	r3, [pc, #84]	@ (80003e8 <KeyboardTextAnimation+0xc8>)
+ 8000394:	2200      	movs	r2, #0
+ 8000396:	801a      	strh	r2, [r3, #0]
+				flag = 0;
+ 8000398:	4b12      	ldr	r3, [pc, #72]	@ (80003e4 <KeyboardTextAnimation+0xc4>)
+ 800039a:	2200      	movs	r2, #0
+ 800039c:	701a      	strb	r2, [r3, #0]
+			}
+			USBD_HID_SendReport(&hUsbDeviceFS, data_out, 9);
+ 800039e:	f107 030c 	add.w	r3, r7, #12
+ 80003a2:	2209      	movs	r2, #9
+ 80003a4:	4619      	mov	r1, r3
+ 80003a6:	4812      	ldr	r0, [pc, #72]	@ (80003f0 <KeyboardTextAnimation+0xd0>)
+ 80003a8:	f007 fdd0 	bl	8007f4c <USBD_HID_SendReport>
+			HAL_Delay(30);
+ 80003ac:	201e      	movs	r0, #30
+ 80003ae:	f000 fccd 	bl	8000d4c <HAL_Delay>
+			uint8_t data_res[9] = {0x02, 0, 0, 0, 0, 0, 0, 0, 0};
+ 80003b2:	4a10      	ldr	r2, [pc, #64]	@ (80003f4 <KeyboardTextAnimation+0xd4>)
+ 80003b4:	463b      	mov	r3, r7
+ 80003b6:	ca07      	ldmia	r2, {r0, r1, r2}
+ 80003b8:	c303      	stmia	r3!, {r0, r1}
+ 80003ba:	701a      	strb	r2, [r3, #0]
+			USBD_HID_SendReport(&hUsbDeviceFS, data_res, 9);
+ 80003bc:	463b      	mov	r3, r7
+ 80003be:	2209      	movs	r2, #9
+ 80003c0:	4619      	mov	r1, r3
+ 80003c2:	480b      	ldr	r0, [pc, #44]	@ (80003f0 <KeyboardTextAnimation+0xd0>)
+ 80003c4:	f007 fdc2 	bl	8007f4c <USBD_HID_SendReport>
+			HAL_Delay(30);
+ 80003c8:	201e      	movs	r0, #30
+ 80003ca:	f000 fcbf 	bl	8000d4c <HAL_Delay>
 		}
 		time = HAL_GetTick();
- 80003cc:	f000 fcb4 	bl	8000d38 <HAL_GetTick>
- 80003d0:	4603      	mov	r3, r0
- 80003d2:	b2da      	uxtb	r2, r3
- 80003d4:	4b02      	ldr	r3, [pc, #8]	@ (80003e0 <KeyboardTextAnimation+0xc4>)
- 80003d6:	701a      	strb	r2, [r3, #0]
+ 80003ce:	f000 fcb3 	bl	8000d38 <HAL_GetTick>
+ 80003d2:	4603      	mov	r3, r0
+ 80003d4:	4a02      	ldr	r2, [pc, #8]	@ (80003e0 <KeyboardTextAnimation+0xc0>)
+ 80003d6:	6013      	str	r3, [r2, #0]
 	}
 }
  80003d8:	bf00      	nop
@@ -460,9 +463,9 @@ void KeyboardTextAnimation(){
  80003de:	bd80      	pop	{r7, pc}
  80003e0:	200001ac 	.word	0x200001ac
  80003e4:	20000000 	.word	0x20000000
- 80003e8:	200001ad 	.word	0x200001ad
- 80003ec:	200001fc 	.word	0x200001fc
- 80003f0:	20000450 	.word	0x20000450
+ 80003e8:	200001b0 	.word	0x200001b0
+ 80003ec:	20000200 	.word	0x20000200
+ 80003f0:	20000454 	.word	0x20000454
  80003f4:	080088e0 	.word	0x080088e0
 
 080003f8 <KeyboardSetup>:
@@ -568,7 +571,7 @@ void KeyboardSet(uint8_t *data){
  800048e:	46bd      	mov	sp, r7
  8000490:	bd80      	pop	{r7, pc}
  8000492:	bf00      	nop
- 8000494:	20000450 	.word	0x20000450
+ 8000494:	20000454 	.word	0x20000454
 
 08000498 <KeyboardClick>:
 
@@ -624,7 +627,7 @@ void KeyboardClick(uint8_t *data){
  80004f2:	3718      	adds	r7, #24
  80004f4:	46bd      	mov	sp, r7
  80004f6:	bd80      	pop	{r7, pc}
- 80004f8:	20000450 	.word	0x20000450
+ 80004f8:	20000454 	.word	0x20000454
 
 080004fc <KeyboardRemove>:
 
@@ -650,7 +653,7 @@ void KeyboardRemove(){
  800051c:	46bd      	mov	sp, r7
  800051e:	bd80      	pop	{r7, pc}
  8000520:	080088ec 	.word	0x080088ec
- 8000524:	20000450 	.word	0x20000450
+ 8000524:	20000454 	.word	0x20000454
 
 08000528 <MouseCommandSetup>:
  */
@@ -752,7 +755,7 @@ void MouseSet(uint8_t *data){
  80005bc:	46bd      	mov	sp, r7
  80005be:	bd80      	pop	{r7, pc}
  80005c0:	080088f8 	.word	0x080088f8
- 80005c4:	20000450 	.word	0x20000450
+ 80005c4:	20000454 	.word	0x20000454
 
 080005c8 <MouseClick>:
 
@@ -790,7 +793,7 @@ void MouseClick(uint8_t buttons){
  8000602:	46bd      	mov	sp, r7
  8000604:	bd80      	pop	{r7, pc}
  8000606:	bf00      	nop
- 8000608:	20000450 	.word	0x20000450
+ 8000608:	20000454 	.word	0x20000454
 
 0800060c <MouseRemove>:
 
@@ -817,7 +820,7 @@ void MouseRemove(){
  8000630:	46bd      	mov	sp, r7
  8000632:	bd80      	pop	{r7, pc}
  8000634:	080088f8 	.word	0x080088f8
- 8000638:	20000450 	.word	0x20000450
+ 8000638:	20000454 	.word	0x20000454
 
 0800063c <HAL_UART_RxCpltCallback>:
 uint8_t length = 0;
@@ -928,11 +931,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
  80006e6:	3710      	adds	r7, #16
  80006e8:	46bd      	mov	sp, r7
  80006ea:	bd80      	pop	{r7, pc}
- 80006ec:	200001d4 	.word	0x200001d4
- 80006f0:	200001d0 	.word	0x200001d0
- 80006f4:	200001ae 	.word	0x200001ae
- 80006f8:	200001af 	.word	0x200001af
- 80006fc:	200001b0 	.word	0x200001b0
+ 80006ec:	200001d8 	.word	0x200001d8
+ 80006f0:	200001d4 	.word	0x200001d4
+ 80006f4:	200001b2 	.word	0x200001b2
+ 80006f8:	200001b3 	.word	0x200001b3
+ 80006fc:	200001b4 	.word	0x200001b4
  8000700:	40011000 	.word	0x40011000
 
 08000704 <crc8>:
@@ -1052,7 +1055,7 @@ void answer(uint8_t data){
  80007b6:	3710      	adds	r7, #16
  80007b8:	46bd      	mov	sp, r7
  80007ba:	bd80      	pop	{r7, pc}
- 80007bc:	20000400 	.word	0x20000400
+ 80007bc:	20000404 	.word	0x20000404
 
 080007c0 <ParsingData>:
 
@@ -1158,7 +1161,7 @@ void ParsingData(uint8_t *buffer, uint8_t len){
  800085e:	46bd      	mov	sp, r7
  8000860:	bd80      	pop	{r7, pc}
  8000862:	bf00      	nop
- 8000864:	200001d8 	.word	0x200001d8
+ 8000864:	200001dc 	.word	0x200001dc
 
 08000868 <MX_GPIO_Init>:
         * Output
@@ -1331,12 +1334,12 @@ int main(void)
  8000978:	bf00      	nop
 		}
 		Animate();
- 800097a:	f7ff fc3b 	bl	80001f4 <Animate>
+ 800097a:	f7ff fc41 	bl	8000200 <Animate>
 		switch(action.device){
  800097e:	e7dc      	b.n	800093a <main+0x22>
- 8000980:	200001d4 	.word	0x200001d4
- 8000984:	20000400 	.word	0x20000400
- 8000988:	200001d8 	.word	0x200001d8
+ 8000980:	200001d8 	.word	0x200001d8
+ 8000984:	20000404 	.word	0x20000404
+ 8000988:	200001dc 	.word	0x200001dc
 
 0800098c <SystemClock_Config>:
 	}
@@ -1726,7 +1729,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
  8000b16:	bf00      	nop
  8000b18:	bd80      	pop	{r7, pc}
  8000b1a:	bf00      	nop
- 8000b1c:	20000914 	.word	0x20000914
+ 8000b1c:	20000918 	.word	0x20000918
 
 08000b20 <USART3_IRQHandler>:
 
@@ -1750,7 +1753,7 @@ void USART3_IRQHandler(void)
  8000b2a:	bf00      	nop
  8000b2c:	bd80      	pop	{r7, pc}
  8000b2e:	bf00      	nop
- 8000b30:	20000400 	.word	0x20000400
+ 8000b30:	20000404 	.word	0x20000404
 
 08000b34 <SystemInit>:
   * @note   This function should be used only after reset.
@@ -1836,7 +1839,7 @@ void MX_USART3_UART_Init(void)
  8000b86:	bf00      	nop
  8000b88:	bd80      	pop	{r7, pc}
  8000b8a:	bf00      	nop
- 8000b8c:	20000400 	.word	0x20000400
+ 8000b8c:	20000404 	.word	0x20000404
  8000b90:	40004800 	.word	0x40004800
 
 08000b94 <HAL_UART_MspInit>:
@@ -2029,7 +2032,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8000c7c:	20000190 	.word	0x20000190
   ldr r4, =_ebss
- 8000c80:	20000c00 	.word	0x20000c00
+ 8000c80:	20000c04 	.word	0x20000c04
 
 08000c84 <ADC1_2_IRQHandler>:
  * @retval : None
@@ -2177,7 +2180,7 @@ __weak void HAL_IncTick(void)
  8000d2c:	bc80      	pop	{r7}
  8000d2e:	4770      	bx	lr
  8000d30:	2000000c 	.word	0x2000000c
- 8000d34:	20000448 	.word	0x20000448
+ 8000d34:	2000044c 	.word	0x2000044c
 
 08000d38 <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -2196,7 +2199,7 @@ __weak uint32_t HAL_GetTick(void)
  8000d42:	46bd      	mov	sp, r7
  8000d44:	bc80      	pop	{r7}
  8000d46:	4770      	bx	lr
- 8000d48:	20000448 	.word	0x20000448
+ 8000d48:	2000044c 	.word	0x2000044c
 
 08000d4c <HAL_Delay>:
   *       implementations in user file.
@@ -18245,7 +18248,7 @@ static void USBD_SetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
  8007a36:	3708      	adds	r7, #8
  8007a38:	46bd      	mov	sp, r7
  8007a3a:	bd80      	pop	{r7, pc}
- 8007a3c:	2000044c 	.word	0x2000044c
+ 8007a3c:	20000450 	.word	0x20000450
 
 08007a40 <USBD_GetConfig>:
 * @param  pdev: device instance
@@ -19569,7 +19572,7 @@ void MX_USB_DEVICE_Init(void)
  800813c:	bd80      	pop	{r7, pc}
  800813e:	bf00      	nop
  8008140:	20000140 	.word	0x20000140
- 8008144:	20000450 	.word	0x20000450
+ 8008144:	20000454 	.word	0x20000454
  8008148:	20000010 	.word	0x20000010
 
 0800814c <USBD_FS_DeviceDescriptor>:
@@ -19671,7 +19674,7 @@ uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
  80081c2:	46bd      	mov	sp, r7
  80081c4:	bd80      	pop	{r7, pc}
  80081c6:	bf00      	nop
- 80081c8:	20000714 	.word	0x20000714
+ 80081c8:	20000718 	.word	0x20000718
  80081cc:	08008900 	.word	0x08008900
 
 080081d0 <USBD_FS_ManufacturerStrDescriptor>:
@@ -19700,7 +19703,7 @@ uint8_t * USBD_FS_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *l
  80081ea:	3708      	adds	r7, #8
  80081ec:	46bd      	mov	sp, r7
  80081ee:	bd80      	pop	{r7, pc}
- 80081f0:	20000714 	.word	0x20000714
+ 80081f0:	20000718 	.word	0x20000718
  80081f4:	08008910 	.word	0x08008910
 
 080081f8 <USBD_FS_SerialStrDescriptor>:
@@ -19779,7 +19782,7 @@ uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  800824a:	46bd      	mov	sp, r7
  800824c:	bd80      	pop	{r7, pc}
  800824e:	bf00      	nop
- 8008250:	20000714 	.word	0x20000714
+ 8008250:	20000718 	.word	0x20000718
  8008254:	08008918 	.word	0x08008918
 
 08008258 <USBD_FS_InterfaceStrDescriptor>:
@@ -19823,7 +19826,7 @@ uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *leng
  8008286:	46bd      	mov	sp, r7
  8008288:	bd80      	pop	{r7, pc}
  800828a:	bf00      	nop
- 800828c:	20000714 	.word	0x20000714
+ 800828c:	20000718 	.word	0x20000718
  8008290:	08008924 	.word	0x08008924
 
 08008294 <Get_SerialNum>:
@@ -20350,7 +20353,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
  800856e:	3708      	adds	r7, #8
  8008570:	46bd      	mov	sp, r7
  8008572:	bd80      	pop	{r7, pc}
- 8008574:	20000914 	.word	0x20000914
+ 8008574:	20000918 	.word	0x20000918
  8008578:	40005c00 	.word	0x40005c00
 
 0800857c <USBD_LL_Start>:
@@ -20801,7 +20804,7 @@ void *USBD_static_malloc(uint32_t size)
  80087e6:	46bd      	mov	sp, r7
  80087e8:	bc80      	pop	{r7}
  80087ea:	4770      	bx	lr
- 80087ec:	20000bec 	.word	0x20000bec
+ 80087ec:	20000bf0 	.word	0x20000bf0
 
 080087f0 <USBD_static_free>:
   * @brief  Dummy memory free

@@ -8,7 +8,9 @@
 #include "AnimationModule.h"
 
 extern USBD_HandleTypeDef hUsbDeviceFS;
-uint8_t time = 0;
+uint32_t time = 0;
+uint8_t flag = 1;
+uint16_t data_set = 0;
 
 void AnimationSetup(Action *act){
 	switch(act->command){
@@ -22,6 +24,7 @@ void AnimationSetup(Action *act){
 }
 
 void AnimationSet(uint8_t *data, uint8_t len){
+	flag = 1;
 	animation.id = data[0];
 	animation.length = len-1;
 	for(uint8_t i=0; i<len-1; i++)
@@ -65,5 +68,20 @@ void MouseMoveAnimation(){
 	}
 }
 void KeyboardTextAnimation(){
-
+	if((HAL_GetTick()-time) > 5){
+		if(flag){
+			uint8_t data_out[9] = {0x02, animation.data[data_set+1], 0, animation.data[data_set], 0, 0, 0, 0, 0};
+			data_set+=2;
+			if(data_set >= animation.length-1){
+				data_set = 0;
+				flag = 0;
+			}
+			USBD_HID_SendReport(&hUsbDeviceFS, data_out, 9);
+			HAL_Delay(30);
+			uint8_t data_res[9] = {0x02, 0, 0, 0, 0, 0, 0, 0, 0};
+			USBD_HID_SendReport(&hUsbDeviceFS, data_res, 9);
+			HAL_Delay(30);
+		}
+		time = HAL_GetTick();
+	}
 }

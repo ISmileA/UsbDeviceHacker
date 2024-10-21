@@ -49,7 +49,7 @@ bool AnimationModule::KeyboardTextAnimation(){
             }else if(num >= (uint8_t)'A' && num <= (uint8_t)'Z'){
                 animation.data[g+4] = num-61;
                 animation.data[g+5] = 2; 
-            }else if(num >= 97 && num <= 122){
+            }else if(num >= (uint8_t)'a' && num <= (uint8_t)'z'){
                 animation.data[g+4] = num-93;
                 animation.data[g+5] = 0;
             }else if(num == (uint8_t)' '){
