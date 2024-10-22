@@ -1,0 +1,4 @@
+../Core/Src/modules/MouseModule.c:11:6:MouseCommandSetup	5
+../Core/Src/modules/MouseModule.c:25:6:MouseSet	2
+../Core/Src/modules/MouseModule.c:32:6:MouseClick	1
+../Core/Src/modules/MouseModule.c:39:6:MouseRemove	1

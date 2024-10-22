@@ -1,4 +1,0 @@
-../Core/Src/KeyboardModule.c:11:6:KeyboardSetup	5
-../Core/Src/KeyboardModule.c:25:6:KeyboardSet	2
-../Core/Src/KeyboardModule.c:33:6:KeyboardClick	2
-../Core/Src/KeyboardModule.c:43:6:KeyboardRemove	1

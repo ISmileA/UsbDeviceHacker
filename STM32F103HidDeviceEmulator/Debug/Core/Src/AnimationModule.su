@@ -1,6 +1,0 @@
-../Core/Src/AnimationModule.c:15:6:AnimationSetup	16	static
-../Core/Src/AnimationModule.c:26:6:AnimationSet	24	static
-../Core/Src/AnimationModule.c:34:6:AnimationRemove	4	static
-../Core/Src/AnimationModule.c:38:6:Animate	8	static
-../Core/Src/AnimationModule.c:49:6:MouseMoveAnimation	16	static
-../Core/Src/AnimationModule.c:70:6:KeyboardTextAnimation	32	static

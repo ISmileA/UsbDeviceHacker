@@ -1,0 +1,3 @@
+../Core/Inc/crc8.h:13:9:crc8	24	static
+../Core/Inc/modules/UsartAnswerModule.h:16:6:answer	24	static
+../Core/Src/modules/UsartParserModule.c:12:6:ParsingData	24	static

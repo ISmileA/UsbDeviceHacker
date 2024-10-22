@@ -1,4 +1,4 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/modules/AnimationModule.h \
+Core/Src/modules/KeyboardModule.o: ../Core/Src/modules/KeyboardModule.c \
  ../Core/Inc/modules/KeyboardModule.h \
  ../Core/Inc/controllers/UsartController.h ../Core/Inc/main.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
@@ -34,12 +34,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/modules/AnimationModule.h \
  ../USB_DEVICE/Target/usbd_conf.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
- ../Core/Inc/modules/MouseModule.h ../Core/Inc/inits/usart.h \
- ../USB_DEVICE/App/usb_device.h \
- C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../Core/Inc/inits/gpio.h
-../Core/Inc/modules/AnimationModule.h:
+ C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 ../Core/Inc/modules/KeyboardModule.h:
 ../Core/Inc/controllers/UsartController.h:
 ../Core/Inc/main.h:
@@ -77,8 +72,3 @@ C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
-../Core/Inc/modules/MouseModule.h:
-../Core/Inc/inits/usart.h:
-../USB_DEVICE/App/usb_device.h:
-C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-../Core/Inc/inits/gpio.h:

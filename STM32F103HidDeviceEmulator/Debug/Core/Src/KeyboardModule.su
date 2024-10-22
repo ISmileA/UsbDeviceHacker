@@ -1,4 +1,0 @@
-../Core/Src/KeyboardModule.c:11:6:KeyboardSetup	16	static
-../Core/Src/KeyboardModule.c:25:6:KeyboardSet	32	static
-../Core/Src/KeyboardModule.c:33:6:KeyboardClick	32	static
-../Core/Src/KeyboardModule.c:43:6:KeyboardRemove	24	static

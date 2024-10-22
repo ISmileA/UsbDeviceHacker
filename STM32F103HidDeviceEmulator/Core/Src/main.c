@@ -1,11 +1,11 @@
+#include <modules/AnimationModule.h>
+#include <modules/KeyboardModule.h>
+#include <modules/MouseModule.h>
 #include "main.h"
-#include "usart.h"
+#include "inits/usart.h"
 #include "usb_device.h"
-#include "gpio.h"
+#include "inits/gpio.h"
 
-#include "MouseModule.h"
-#include "KeyboardModule.h"
-#include "AnimationModule.h"
 
 extern UART_HandleTypeDef huart3;
 

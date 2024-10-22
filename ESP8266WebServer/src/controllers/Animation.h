@@ -12,7 +12,7 @@ namespace Animation{
     AnimationModule animate;
     ClientProcessing cpr;
     SerialModule serial;
-    JsonDocument parsed;
+    DynamicJsonDocument parsed(2048);
 
     void set(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
