@@ -10,7 +10,7 @@
 
 uint8_t length = 0;
 uint8_t parsedData = 0;
-uint8_t buffer[32] = {};
+uint8_t buffer[1024] = {};
 uint32_t timer = 0;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){

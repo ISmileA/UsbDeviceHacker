@@ -21,31 +21,31 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .data         00000190  20000000  08008968  0000a000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000a78  20000190  08008af8  0000a190  2**2
+  9 .bss          00001438  20000190  08008af8  0000a190  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000c08  08008af8  0000ac08  2**0
+ 10 ._user_heap_stack 00000600  200015c8  08008af8  0000a5c8  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0000a190  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0001179d  00000000  00000000  0000a1b9  2**0
+ 12 .debug_info   0001177b  00000000  00000000  0000a1b9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000038b9  00000000  00000000  0001b956  2**0
+ 13 .debug_abbrev 00003900  00000000  00000000  0001b934  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000de8  00000000  00000000  0001f210  2**3
+ 14 .debug_aranges 00000de8  00000000  00000000  0001f238  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000a51  00000000  00000000  0001fff8  2**0
+ 15 .debug_rnglists 00000a51  00000000  00000000  00020020  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001a5d1  00000000  00000000  00020a49  2**0
+ 16 .debug_macro  0001a5d1  00000000  00000000  00020a71  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000171d0  00000000  00000000  0003b01a  2**0
+ 17 .debug_line   000171d0  00000000  00000000  0003b042  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000872b0  00000000  00000000  000521ea  2**0
+ 18 .debug_str    000872b0  00000000  00000000  00052212  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000d949a  2**0
+ 19 .comment      00000043  00000000  00000000  000d94c2  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003520  00000000  00000000  000d94e0  2**2
+ 20 .debug_frame  00003520  00000000  00000000  000d9508  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  000dca00  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  000dca28  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -81,7 +81,7 @@ Disassembly of section .text:
 0800014c <HAL_UART_RxCpltCallback>:
 uint8_t length = 0;
 uint8_t parsedData = 0;
-uint8_t buffer[32] = {};
+uint8_t buffer[1024] = {};
 uint32_t timer = 0;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
@@ -187,8 +187,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
  80001f6:	3710      	adds	r7, #16
  80001f8:	46bd      	mov	sp, r7
  80001fa:	bd80      	pop	{r7, pc}
- 80001fc:	2000021c 	.word	0x2000021c
- 8000200:	200001d0 	.word	0x200001d0
+ 80001fc:	200005fc 	.word	0x200005fc
+ 8000200:	200005b0 	.word	0x200005b0
  8000204:	200001ac 	.word	0x200001ac
  8000208:	200001ad 	.word	0x200001ad
  800020c:	200001b0 	.word	0x200001b0
@@ -358,7 +358,7 @@ void MX_USART3_UART_Init(void)
  800030a:	bf00      	nop
  800030c:	bd80      	pop	{r7, pc}
  800030e:	bf00      	nop
- 8000310:	200001d4 	.word	0x200001d4
+ 8000310:	200005b4 	.word	0x200005b4
  8000314:	40004800 	.word	0x40004800
 
 08000318 <HAL_UART_MspInit>:
@@ -541,9 +541,9 @@ int main(void)
  8000422:	f000 f93b 	bl	800069c <Animate>
 		switch(action.device){
  8000426:	e7dc      	b.n	80003e2 <main+0x22>
- 8000428:	2000021c 	.word	0x2000021c
- 800042c:	200001d4 	.word	0x200001d4
- 8000430:	20000220 	.word	0x20000220
+ 8000428:	200005fc 	.word	0x200005fc
+ 800042c:	200005b4 	.word	0x200005b4
+ 8000430:	20000600 	.word	0x20000600
 
 08000434 <SystemClock_Config>:
 	}
@@ -933,7 +933,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
  80005be:	bf00      	nop
  80005c0:	bd80      	pop	{r7, pc}
  80005c2:	bf00      	nop
- 80005c4:	2000091c 	.word	0x2000091c
+ 80005c4:	200012dc 	.word	0x200012dc
 
 080005c8 <USART3_IRQHandler>:
 
@@ -957,7 +957,7 @@ void USART3_IRQHandler(void)
  80005d2:	bf00      	nop
  80005d4:	bd80      	pop	{r7, pc}
  80005d6:	bf00      	nop
- 80005d8:	200001d4 	.word	0x200001d4
+ 80005d8:	200005b4 	.word	0x200005b4
 
 080005dc <SystemInit>:
   * @note   This function should be used only after reset.
@@ -1082,7 +1082,7 @@ void AnimationSet(uint8_t *data, uint8_t len){
  8000678:	4770      	bx	lr
  800067a:	bf00      	nop
  800067c:	20000004 	.word	0x20000004
- 8000680:	20000244 	.word	0x20000244
+ 8000680:	20000a04 	.word	0x20000a04
 
 08000684 <AnimationRemove>:
 
@@ -1099,7 +1099,7 @@ void AnimationRemove(){
  8000692:	bc80      	pop	{r7}
  8000694:	4770      	bx	lr
  8000696:	bf00      	nop
- 8000698:	20000244 	.word	0x20000244
+ 8000698:	20000a04 	.word	0x20000a04
 
 0800069c <Animate>:
 
@@ -1132,7 +1132,7 @@ void Animate(){
  80006ba:	bf00      	nop
  80006bc:	bd80      	pop	{r7, pc}
  80006be:	bf00      	nop
- 80006c0:	20000244 	.word	0x20000244
+ 80006c0:	20000a04 	.word	0x20000a04
 
 080006c4 <MouseMoveAnimation>:
 
@@ -1140,13 +1140,13 @@ void MouseMoveAnimation(){
  80006c4:	b580      	push	{r7, lr}
  80006c6:	b082      	sub	sp, #8
  80006c8:	af00      	add	r7, sp, #0
-	if((HAL_GetTick()-time) >= 10){
+	if((HAL_GetTick()-time) >= 5){
  80006ca:	f000 fb35 	bl	8000d38 <HAL_GetTick>
  80006ce:	4602      	mov	r2, r0
  80006d0:	4b37      	ldr	r3, [pc, #220]	@ (80007b0 <MouseMoveAnimation+0xec>)
  80006d2:	681b      	ldr	r3, [r3, #0]
  80006d4:	1ad3      	subs	r3, r2, r3
- 80006d6:	2b09      	cmp	r3, #9
+ 80006d6:	2b04      	cmp	r3, #4
  80006d8:	d965      	bls.n	80007a6 <MouseMoveAnimation+0xe2>
 		uint8_t data_out[5] = {0x01, animation.data[1], 0, 0, 0};
  80006da:	2301      	movs	r3, #1
@@ -1250,9 +1250,9 @@ void MouseMoveAnimation(){
  80007aa:	46bd      	mov	sp, r7
  80007ac:	bd80      	pop	{r7, pc}
  80007ae:	bf00      	nop
- 80007b0:	20000448 	.word	0x20000448
- 80007b4:	20000244 	.word	0x20000244
- 80007b8:	20000458 	.word	0x20000458
+ 80007b0:	20000e08 	.word	0x20000e08
+ 80007b4:	20000a04 	.word	0x20000a04
+ 80007b8:	20000e18 	.word	0x20000e18
 
 080007bc <KeyboardTextAnimation>:
 void KeyboardTextAnimation(){
@@ -1362,11 +1362,11 @@ void KeyboardTextAnimation(){
  8000876:	3718      	adds	r7, #24
  8000878:	46bd      	mov	sp, r7
  800087a:	bd80      	pop	{r7, pc}
- 800087c:	20000448 	.word	0x20000448
+ 800087c:	20000e08 	.word	0x20000e08
  8000880:	20000004 	.word	0x20000004
- 8000884:	2000044c 	.word	0x2000044c
- 8000888:	20000244 	.word	0x20000244
- 800088c:	20000458 	.word	0x20000458
+ 8000884:	20000e0c 	.word	0x20000e0c
+ 8000888:	20000a04 	.word	0x20000a04
+ 800088c:	20000e18 	.word	0x20000e18
  8000890:	080088e0 	.word	0x080088e0
 
 08000894 <KeyboardSetup>:
@@ -1472,7 +1472,7 @@ void KeyboardSet(uint8_t *data){
  800092a:	46bd      	mov	sp, r7
  800092c:	bd80      	pop	{r7, pc}
  800092e:	bf00      	nop
- 8000930:	20000458 	.word	0x20000458
+ 8000930:	20000e18 	.word	0x20000e18
 
 08000934 <KeyboardClick>:
 
@@ -1528,7 +1528,7 @@ void KeyboardClick(uint8_t *data){
  800098e:	3718      	adds	r7, #24
  8000990:	46bd      	mov	sp, r7
  8000992:	bd80      	pop	{r7, pc}
- 8000994:	20000458 	.word	0x20000458
+ 8000994:	20000e18 	.word	0x20000e18
 
 08000998 <KeyboardRemove>:
 
@@ -1554,7 +1554,7 @@ void KeyboardRemove(){
  80009b8:	46bd      	mov	sp, r7
  80009ba:	bd80      	pop	{r7, pc}
  80009bc:	080088ec 	.word	0x080088ec
- 80009c0:	20000458 	.word	0x20000458
+ 80009c0:	20000e18 	.word	0x20000e18
 
 080009c4 <MouseCommandSetup>:
  */
@@ -1656,7 +1656,7 @@ void MouseSet(uint8_t *data){
  8000a58:	46bd      	mov	sp, r7
  8000a5a:	bd80      	pop	{r7, pc}
  8000a5c:	080088f8 	.word	0x080088f8
- 8000a60:	20000458 	.word	0x20000458
+ 8000a60:	20000e18 	.word	0x20000e18
 
 08000a64 <MouseClick>:
 
@@ -1694,7 +1694,7 @@ void MouseClick(uint8_t buttons){
  8000a9e:	46bd      	mov	sp, r7
  8000aa0:	bd80      	pop	{r7, pc}
  8000aa2:	bf00      	nop
- 8000aa4:	20000458 	.word	0x20000458
+ 8000aa4:	20000e18 	.word	0x20000e18
 
 08000aa8 <MouseRemove>:
 
@@ -1721,7 +1721,7 @@ void MouseRemove(){
  8000acc:	46bd      	mov	sp, r7
  8000ace:	bd80      	pop	{r7, pc}
  8000ad0:	080088f8 	.word	0x080088f8
- 8000ad4:	20000458 	.word	0x20000458
+ 8000ad4:	20000e18 	.word	0x20000e18
 
 08000ad8 <crc8>:
 #ifndef INC_CRC8_H_
@@ -1840,7 +1840,7 @@ void answer(uint8_t data){
  8000b8a:	3710      	adds	r7, #16
  8000b8c:	46bd      	mov	sp, r7
  8000b8e:	bd80      	pop	{r7, pc}
- 8000b90:	200001d4 	.word	0x200001d4
+ 8000b90:	200005b4 	.word	0x200005b4
 
 08000b94 <ParsingData>:
 
@@ -1946,7 +1946,7 @@ void ParsingData(uint8_t *buffer, uint8_t len){
  8000c32:	46bd      	mov	sp, r7
  8000c34:	bd80      	pop	{r7, pc}
  8000c36:	bf00      	nop
- 8000c38:	20000220 	.word	0x20000220
+ 8000c38:	20000600 	.word	0x20000600
 
 08000c3c <Reset_Handler>:
   .weak Reset_Handler
@@ -2032,7 +2032,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8000c7c:	20000190 	.word	0x20000190
   ldr r4, =_ebss
- 8000c80:	20000c08 	.word	0x20000c08
+ 8000c80:	200015c8 	.word	0x200015c8
 
 08000c84 <ADC1_2_IRQHandler>:
  * @retval : None
@@ -2180,7 +2180,7 @@ __weak void HAL_IncTick(void)
  8000d2c:	bc80      	pop	{r7}
  8000d2e:	4770      	bx	lr
  8000d30:	2000000c 	.word	0x2000000c
- 8000d34:	20000450 	.word	0x20000450
+ 8000d34:	20000e10 	.word	0x20000e10
 
 08000d38 <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -2199,7 +2199,7 @@ __weak uint32_t HAL_GetTick(void)
  8000d42:	46bd      	mov	sp, r7
  8000d44:	bc80      	pop	{r7}
  8000d46:	4770      	bx	lr
- 8000d48:	20000450 	.word	0x20000450
+ 8000d48:	20000e10 	.word	0x20000e10
 
 08000d4c <HAL_Delay>:
   *       implementations in user file.
@@ -18248,7 +18248,7 @@ static void USBD_SetConfig(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
  8007a36:	3708      	adds	r7, #8
  8007a38:	46bd      	mov	sp, r7
  8007a3a:	bd80      	pop	{r7, pc}
- 8007a3c:	20000454 	.word	0x20000454
+ 8007a3c:	20000e14 	.word	0x20000e14
 
 08007a40 <USBD_GetConfig>:
 * @param  pdev: device instance
@@ -19572,7 +19572,7 @@ void MX_USB_DEVICE_Init(void)
  800813c:	bd80      	pop	{r7, pc}
  800813e:	bf00      	nop
  8008140:	20000140 	.word	0x20000140
- 8008144:	20000458 	.word	0x20000458
+ 8008144:	20000e18 	.word	0x20000e18
  8008148:	20000010 	.word	0x20000010
 
 0800814c <USBD_FS_DeviceDescriptor>:
@@ -19674,7 +19674,7 @@ uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
  80081c2:	46bd      	mov	sp, r7
  80081c4:	bd80      	pop	{r7, pc}
  80081c6:	bf00      	nop
- 80081c8:	2000071c 	.word	0x2000071c
+ 80081c8:	200010dc 	.word	0x200010dc
  80081cc:	08008900 	.word	0x08008900
 
 080081d0 <USBD_FS_ManufacturerStrDescriptor>:
@@ -19703,7 +19703,7 @@ uint8_t * USBD_FS_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *l
  80081ea:	3708      	adds	r7, #8
  80081ec:	46bd      	mov	sp, r7
  80081ee:	bd80      	pop	{r7, pc}
- 80081f0:	2000071c 	.word	0x2000071c
+ 80081f0:	200010dc 	.word	0x200010dc
  80081f4:	08008910 	.word	0x08008910
 
 080081f8 <USBD_FS_SerialStrDescriptor>:
@@ -19782,7 +19782,7 @@ uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  800824a:	46bd      	mov	sp, r7
  800824c:	bd80      	pop	{r7, pc}
  800824e:	bf00      	nop
- 8008250:	2000071c 	.word	0x2000071c
+ 8008250:	200010dc 	.word	0x200010dc
  8008254:	08008918 	.word	0x08008918
 
 08008258 <USBD_FS_InterfaceStrDescriptor>:
@@ -19826,7 +19826,7 @@ uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *leng
  8008286:	46bd      	mov	sp, r7
  8008288:	bd80      	pop	{r7, pc}
  800828a:	bf00      	nop
- 800828c:	2000071c 	.word	0x2000071c
+ 800828c:	200010dc 	.word	0x200010dc
  8008290:	08008924 	.word	0x08008924
 
 08008294 <Get_SerialNum>:
@@ -20353,7 +20353,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
  800856e:	3708      	adds	r7, #8
  8008570:	46bd      	mov	sp, r7
  8008572:	bd80      	pop	{r7, pc}
- 8008574:	2000091c 	.word	0x2000091c
+ 8008574:	200012dc 	.word	0x200012dc
  8008578:	40005c00 	.word	0x40005c00
 
 0800857c <USBD_LL_Start>:
@@ -20804,7 +20804,7 @@ void *USBD_static_malloc(uint32_t size)
  80087e6:	46bd      	mov	sp, r7
  80087e8:	bc80      	pop	{r7}
  80087ea:	4770      	bx	lr
- 80087ec:	20000bf4 	.word	0x20000bf4
+ 80087ec:	200015b4 	.word	0x200015b4
 
 080087f0 <USBD_static_free>:
   * @brief  Dummy memory free

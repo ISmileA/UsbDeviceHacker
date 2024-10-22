@@ -16,7 +16,7 @@ namespace Animation{
 
     void set(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
-            uint8 data[32] = {};
+            uint8 data[512] = {};
             data[0] = ANIMATION;
             data[1] = SET_COMMAND; 
             if(animate.AnimationSetup(&parsed, data))

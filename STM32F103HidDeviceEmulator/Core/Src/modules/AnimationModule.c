@@ -47,7 +47,7 @@ void Animate(){
 }
 
 void MouseMoveAnimation(){
-	if((HAL_GetTick()-time) >= 10){
+	if((HAL_GetTick()-time) >= 5){
 		uint8_t data_out[5] = {0x01, animation.data[1], 0, 0, 0};
 		switch((char)animation.data[0]){
 			case('r'):

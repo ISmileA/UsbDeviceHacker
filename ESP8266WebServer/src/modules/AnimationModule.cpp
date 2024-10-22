@@ -35,7 +35,7 @@ bool AnimationModule::MouseMoveAnimation(){
 bool AnimationModule::KeyboardTextAnimation(){
     if(animation.parsed["text"]){
         const char *text = animation.parsed["text"];
-        uint16_t size = strlen(animation.parsed["text"]);
+        uint16_t size = strlen(text);
         animation.data[2] = size*2+2;
         animation.data[3] = (uint8_t)animation.parsed["id"];
         for (uint i = 0, g = 0; i<size; i++, g+=2){
@@ -62,6 +62,7 @@ bool AnimationModule::KeyboardTextAnimation(){
         }
         animation.data[4+size*2] = (uint8_t)animation.parsed["repeat"];
         return true;
+        
     }
     server.send(400, "aplication/json", cpr.error("Error text").c_str());
     return false;
