@@ -43,6 +43,8 @@ void Animate(){
 		case(KEYBOARD_TEXT_ANIMATION):
 			KeyboardTextAnimation();
 			break;
+		case(OTHER_ANIMATION):
+			break;
 	}
 }
 
