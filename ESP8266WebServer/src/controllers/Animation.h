@@ -12,24 +12,27 @@ namespace Animation{
     AnimationModule animate;
     ClientProcessing cpr;
     SerialModule serial;
-    DynamicJsonDocument parsed(2048);
+    JsonDocument parsed;
 
     void set(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
             uint8 data[512] = {};
             data[0] = ANIMATION;
             data[1] = SET_COMMAND; 
-            if(animate.AnimationSetup(&parsed, data))
-                cpr.AnswerClient(serial.SendDataWithWait(data, data[2]+3));
+            if(animate.AnimationSetup(&parsed, data)){
+                uint16_t len = (uint16_t)data[2] | (uint16_t)(data[3] << 8);
+                cpr.AnswerClient(serial.SendDataWithWait(data, len+4));
+            }
         }
     };
     void remove(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
-            uint8 data[3] = {};
+            uint8 data[4] = {};
             data[0] = ANIMATION;
             data[1] = REMOVE_COMMAND;
             data[2] = 0;
-            cpr.AnswerClient(serial.SendDataWithWait(data, 3));
+            data[3] = 0;
+            cpr.AnswerClient(serial.SendDataWithWait(data, 4));
         }
     };
 };

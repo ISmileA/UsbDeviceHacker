@@ -3,4 +3,4 @@
 ../Core/Src/modules/AnimationModule.c:34:6:AnimationRemove	1
 ../Core/Src/modules/AnimationModule.c:38:6:Animate	3
 ../Core/Src/modules/AnimationModule.c:49:6:MouseMoveAnimation	6
-../Core/Src/modules/AnimationModule.c:70:6:KeyboardTextAnimation	4
+../Core/Src/modules/AnimationModule.c:70:6:KeyboardTextAnimation	14

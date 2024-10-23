@@ -10,13 +10,13 @@ extern "C" {
 typedef struct{
 	uint8_t device;
 	uint8_t command;
-	uint8_t length;
+	uint16_t length;
 	uint8_t data[1024];
 } Action;
 
 typedef struct {
 	uint8_t id;
-	uint8_t length;
+	uint16_t length;
 	uint8_t data[1024];
 } Animation;
 

@@ -16,7 +16,7 @@
 #define KEYBOARD_TEXT_ANIMATION 0x02
 
 void AnimationSetup(Action *act);
-void AnimationSet(uint8_t *data, uint8_t len);
+void AnimationSet(uint8_t *data, uint16_t len);
 void AnimationRemove();
 
 void Animate();

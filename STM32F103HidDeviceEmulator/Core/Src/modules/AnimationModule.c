@@ -23,11 +23,11 @@ void AnimationSetup(Action *act){
 	}
 }
 
-void AnimationSet(uint8_t *data, uint8_t len){
+void AnimationSet(uint8_t *data, uint16_t len){
 	flag = 1;
 	animation.id = data[0];
 	animation.length = len-1;
-	for(uint8_t i=0; i<len-1; i++)
+	for(uint8_t i=0; i<animation.length; i++)
 		animation.data[i] = data[i+1];
 }
 
@@ -68,20 +68,50 @@ void MouseMoveAnimation(){
 	}
 }
 void KeyboardTextAnimation(){
+	static uint32_t repeat_timer = 0;
 	if((HAL_GetTick()-time) > 5){
 		if(flag){
-			uint8_t data_out[9] = {0x02, animation.data[data_set+1], 0, animation.data[data_set], 0, 0, 0, 0, 0};
-			data_set+=2;
-			if(data_set >= animation.length-1){
-				data_set = 0;
-				flag = 0;
-			}
+			uint8_t sp = 0, symb = 0;
+			if (animation.data[data_set] >= (uint8_t)'0' && animation.data[data_set] <= (uint8_t)'9'){
+				if (animation.data[data_set] == 48)
+					symb = animation.data[data_set]-9;
+				else
+					symb = animation.data[data_set]-19;
+				sp = 0;
+			}else if(animation.data[data_set] >= (uint8_t)'A' && animation.data[data_set] <= (uint8_t)'Z'){
+				symb = animation.data[data_set]-61;
+				sp = 2;
+			}else if(animation.data[data_set] >= (uint8_t)'a' && animation.data[data_set] <= (uint8_t)'z'){
+				symb = animation.data[data_set]-93;
+				sp = 0;
+			}else if(animation.data[data_set] == (uint8_t)' '){
+				symb = animation.data[data_set]+12;
+				sp = 0;
+			}else
+				symb = 85;
+			uint8_t data_out[9] = {0x02, sp, 0, symb, 0, 0, 0, 0, 0};
+			data_set++;
+
 			USBD_HID_SendReport(&hUsbDeviceFS, data_out, 9);
 			HAL_Delay(30);
 			uint8_t data_res[9] = {0x02, 0, 0, 0, 0, 0, 0, 0, 0};
 			USBD_HID_SendReport(&hUsbDeviceFS, data_res, 9);
 			HAL_Delay(30);
+
+			if(data_set >= animation.length-1){
+				data_set = 0;
+				flag = 0;
+				repeat_timer = HAL_GetTick();
+			}
+		}else if (animation.data[animation.length-1] != 0){
+			if((HAL_GetTick()-repeat_timer) >= animation.data[animation.length-1]*100){
+				flag = 1;
+				repeat_timer = HAL_GetTick();
+			}
 		}
 		time = HAL_GetTick();
 	}
+
 }
+
+

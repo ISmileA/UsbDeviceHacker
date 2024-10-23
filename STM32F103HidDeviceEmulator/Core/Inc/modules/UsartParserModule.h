@@ -17,7 +17,7 @@ extern "C" {
 
 
 
-void ParsingData(uint8_t *buffer, uint8_t len);
+void ParsingData(uint8_t *buffer, uint16_t len);
 
 #ifdef __cplusplus
 }

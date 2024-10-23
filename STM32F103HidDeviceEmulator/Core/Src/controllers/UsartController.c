@@ -21,9 +21,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	}
 	if(byte == HEADER || parsedData > 0){
 		buffer[parsedData] = byte;
-		if(parsedData == 3)
-			length = byte;
-		if(parsedData >= length+4){
+		if(parsedData == 4)
+			length = (uint16_t)(buffer[parsedData-1]) | (uint16_t)(buffer[parsedData] << 8);
+		if(parsedData >= length+5){
 			HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 			ParsingData(buffer, parsedData+1);
 			length = 0;

@@ -9,15 +9,16 @@
 #include <modules/UsartParserModule.h>
 #include "crc8.h"
 
-void ParsingData(uint8_t *buffer, uint8_t len){
+void ParsingData(uint8_t *buffer, uint16_t len){
 	if(buffer[0] == HEADER){
-		if(buffer[3]+5 == len){
-			if(crc8(buffer, buffer[3]+4) == buffer[buffer[3]+4]){
+		uint16_t length_now = (uint16_t)buffer[3] | (uint16_t)(buffer[4] << 8);
+		if(length_now+6 == len){
+			if(crc8(buffer, length_now+5) == buffer[length_now+5]){
 				answer(USART_OK);
 				action.command = buffer[2];
-				action.length = buffer[3];
+				action.length = (uint16_t)buffer[3] | (uint16_t)(buffer[4] << 8);
 				for(uint8_t i=0; i<action.length; i++){
-					action.data[i] = buffer[i+4];
+					action.data[i] = buffer[i+5];
 				}
 				action.device = buffer[1];
 			}else
@@ -25,4 +26,3 @@ void ParsingData(uint8_t *buffer, uint8_t len){
 		}
 	}
 }
-
