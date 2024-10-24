@@ -14,7 +14,7 @@
 
 #define MOUSE_MOVE_ANIMATION 0x01
 #define KEYBOARD_TEXT_ANIMATION 0x02
-#define OTHER_ANIMATION 0x03
+#define MOUSE_ROUND_ANIMATION 0x03
 
 void AnimationSetup(Action *act);
 void AnimationSet(uint8_t *data, uint16_t len);
@@ -24,7 +24,7 @@ void Animate();
 
 void MouseMoveAnimation();
 void KeyboardTextAnimation();
-void OtherAnimation();
+void MouseROundAnimation();
 
 
 #endif /* INC_ANIMATIONMODULE_H_ */

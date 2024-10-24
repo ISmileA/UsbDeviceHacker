@@ -6,6 +6,7 @@
  */
 
 #include <modules/AnimationModule.h>
+#include <math.h>
 
 extern USBD_HandleTypeDef hUsbDeviceFS;
 uint32_t time = 0;
@@ -43,7 +44,7 @@ void Animate(){
 		case(KEYBOARD_TEXT_ANIMATION):
 			KeyboardTextAnimation();
 			break;
-		case(OTHER_ANIMATION):
+		case(MOUSE_ROUND_ANIMATION):
 			break;
 	}
 }
@@ -116,4 +117,15 @@ void KeyboardTextAnimation(){
 
 }
 
+void MouseRounAnimation(uint16_t radius, uint8_t speed, uint8_t buttons = 0){
+	static uint16_t x = 0, y_pos = radius, y = 0;
+	if((HAL_GetTick()-time) >= 5){
+		x+=1+2*speed;
+		y = abs(y_pos-(uint16_t)sqrt(radius*radius-x*x));
+		y_pos-=y;
+		uint8_t data_out[5] = {0x01, buttons, x, y, 0};
+		USBD_HID_SendReport(&hUsbDeviceFS, data_out, 5);
+		time = HAL_GetTick();
+	}
 
+}
