@@ -24,7 +24,7 @@ void Animate();
 
 void MouseMoveAnimation();
 void KeyboardTextAnimation();
-void MouseROundAnimation();
+void MouseRoundAnimation();
 
 
 #endif /* INC_ANIMATIONMODULE_H_ */

@@ -1,6 +1,7 @@
-../Core/Src/modules/AnimationModule.c:15:6:AnimationSetup	3
-../Core/Src/modules/AnimationModule.c:26:6:AnimationSet	2
-../Core/Src/modules/AnimationModule.c:34:6:AnimationRemove	1
-../Core/Src/modules/AnimationModule.c:38:6:Animate	3
-../Core/Src/modules/AnimationModule.c:49:6:MouseMoveAnimation	6
-../Core/Src/modules/AnimationModule.c:70:6:KeyboardTextAnimation	14
+../Core/Src/modules/AnimationModule.c:18:6:AnimationSetup	3
+../Core/Src/modules/AnimationModule.c:29:6:AnimationSet	2
+../Core/Src/modules/AnimationModule.c:37:6:AnimationRemove	1
+../Core/Src/modules/AnimationModule.c:41:6:Animate	5
+../Core/Src/modules/AnimationModule.c:55:6:MouseMoveAnimation	6
+../Core/Src/modules/AnimationModule.c:76:6:KeyboardTextAnimation	14
+../Core/Src/modules/AnimationModule.c:121:6:MouseRoundAnimation	4

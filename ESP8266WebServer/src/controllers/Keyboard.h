@@ -17,14 +17,14 @@ namespace Keyboard{
             data[1] = SET_COMMAND;
             data[2] = 8;
             data[3] = 0;
-            data[4] = (uint8_t)parsed["modifier"];
-            data[5] = (uint8_t)parsed["reserved"];
-            data[6] = (uint8_t)parsed["keycode1"];
-            data[7] = (uint8_t)parsed["keycode2"];
-            data[8] = (uint8_t)parsed["keycode3"];      
-            data[9] = (uint8_t)parsed["keycode4"];   
-            data[10] = (uint8_t)parsed["keycode5"];   
-            data[11] = (uint8_t)parsed["keycode6"];   
+            data[4] = parsed["modifier"].as<uint8_t>();
+            data[5] = parsed["reserved"].as<uint8_t>();
+            data[6] = parsed["keycode1"].as<uint8_t>();
+            data[7] = parsed["keycode2"].as<uint8_t>();
+            data[8] = parsed["keycode3"].as<uint8_t>();      
+            data[9] = parsed["keycode4"].as<uint8_t>();   
+            data[10] = parsed["keycode5"].as<uint8_t>();   
+            data[11] = parsed["keycode6"].as<uint8_t>();   
 
             cpr.AnswerClient(serial.SendDataWithWait(data, 12));
         }
@@ -46,14 +46,14 @@ namespace Keyboard{
             data[1] = CLICK_COMMAND;
             data[2] = 8;
             data[3] = 0;
-            data[4] = (uint8_t)parsed["modifier"];
-            data[5] = (uint8_t)parsed["reserved"];
-            data[6] = (uint8_t)parsed["keycode1"];
-            data[7] = (uint8_t)parsed["keycode2"];
-            data[8] = (uint8_t)parsed["keycode3"];      
-            data[9] = (uint8_t)parsed["keycode4"];   
-            data[10] = (uint8_t)parsed["keycode5"];   
-            data[11] = (uint8_t)parsed["keycode6"];   
+            data[4] = parsed["modifier"].as<uint8_t>();
+            data[5] = parsed["reserved"].as<uint8_t>();
+            data[6] = parsed["keycode1"].as<uint8_t>();
+            data[7] = parsed["keycode2"].as<uint8_t>();
+            data[8] = parsed["keycode3"].as<uint8_t>();      
+            data[9] = parsed["keycode4"].as<uint8_t>();   
+            data[10] = parsed["keycode5"].as<uint8_t>();   
+            data[11] = parsed["keycode6"].as<uint8_t>();   
 
             cpr.AnswerClient(serial.SendDataWithWait(data, 12));
         }

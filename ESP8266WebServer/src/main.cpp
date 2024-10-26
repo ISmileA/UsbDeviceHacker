@@ -26,12 +26,9 @@ void setup() {
   InitRouter();                  
   server.begin();                                    
   Serial.println("Web server running.");               
-
-
   
-  delay(1000);                                        
-  Serial.println(WiFi.localIP());       
-
+  delay(1000);                                  
+  Serial.println(WiFi.localIP());
 }
 
 void loop() {

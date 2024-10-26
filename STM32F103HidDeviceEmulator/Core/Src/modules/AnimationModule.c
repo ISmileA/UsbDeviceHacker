@@ -13,6 +13,8 @@ uint32_t time = 0;
 uint8_t flag = 1;
 uint16_t data_set = 0;
 
+uint16_t x = 0, y_pos = 0, y = 0;
+
 void AnimationSetup(Action *act){
 	switch(act->command){
 		case(SET_COMMAND):
@@ -45,6 +47,7 @@ void Animate(){
 			KeyboardTextAnimation();
 			break;
 		case(MOUSE_ROUND_ANIMATION):
+			MouseRoundAnimation();
 			break;
 	}
 }
@@ -114,16 +117,18 @@ void KeyboardTextAnimation(){
 		}
 		time = HAL_GetTick();
 	}
-
 }
-
-void MouseRounAnimation(uint16_t radius, uint8_t speed, uint8_t buttons = 0){
-	static uint16_t x = 0, y_pos = radius, y = 0;
+void MouseRoundAnimation(){
+	uint16_t radius = animation.data[0], speed = animation.data[1], buttons = animation.data[2];
+	if(x == 0)
+		y_pos = radius;
 	if((HAL_GetTick()-time) >= 5){
 		x+=1+2*speed;
 		y = abs(y_pos-(uint16_t)sqrt(radius*radius-x*x));
 		y_pos-=y;
-		uint8_t data_out[5] = {0x01, buttons, x, y, 0};
+		if(x >= radius)
+			x = 0;
+		uint8_t data_out[5] = {0x01, buttons, 1+2*speed, y, 0};
 		USBD_HID_SendReport(&hUsbDeviceFS, data_out, 5);
 		time = HAL_GetTick();
 	}
