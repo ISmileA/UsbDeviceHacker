@@ -36,6 +36,7 @@ namespace Keyboard{
             data[1] = REMOVE_COMMAND;
             data[2] = 0; 
             data[3] = 0;
+            
             cpr.AnswerClient(serial.SendDataWithWait(data, 4));
         }
     };

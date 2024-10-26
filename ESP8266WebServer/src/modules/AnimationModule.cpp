@@ -1,6 +1,5 @@
 #include "AnimationModule.h"
 
-
 AnimationData animation;
 
 bool AnimationModule::AnimationSetup(JsonDocument *parsed, uint8_t *data){

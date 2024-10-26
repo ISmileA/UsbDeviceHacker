@@ -6,7 +6,6 @@
 #include "controllers/Keyboard.h"
 
 void InitRouter(){
-
     server.on("/mouse/set", Mouse::set);
     server.on("/mouse/remove", Mouse::remove);
     server.on("/mouse/click", Mouse::click);
@@ -15,5 +14,4 @@ void InitRouter(){
     server.on("/keyboard/click", Keyboard::click);
     server.on("/animation/set", Animation::set);
     server.on("/animation/remove", Animation::remove);
-
 };

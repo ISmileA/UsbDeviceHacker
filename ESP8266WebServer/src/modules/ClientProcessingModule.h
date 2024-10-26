@@ -26,10 +26,10 @@ public:
     }
     void AnswerClient(string result){
         if(result == "timeout")
-                server.send(507, "aplication/json", error("Stm32 is not responding").c_str());
-            else if(result == "error")
-                server.send(507, "aplication/json", error("Stm32 sent an error").c_str());
-            else if(result == "ok")
-                server.send(200, "aplication/json", nice().c_str()); 
+            server.send(507, "aplication/json", error("Stm32 is not responding").c_str());
+        else if(result == "error")
+            server.send(507, "aplication/json", error("Stm32 sent an error").c_str());
+        else if(result == "ok")
+            server.send(200, "aplication/json", nice().c_str()); 
     }
 };

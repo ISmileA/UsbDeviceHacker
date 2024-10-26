@@ -25,7 +25,8 @@ namespace Mouse{
 
             cpr.AnswerClient(serial.SendDataWithWait(data, 8));
         }
-    };
+    }
+
     void remove(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
             uint8_t data[4] = {};
@@ -35,7 +36,8 @@ namespace Mouse{
             data[3] = 0;
             cpr.AnswerClient(serial.SendDataWithWait(data, 4));
         }
-    };
+    }
+    
     void click(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
             uint8_t data[5] = {};
