@@ -24,7 +24,8 @@ namespace Animation{
                 cpr.AnswerClient(serial.SendDataWithWait(data, len+4));
             }
         }
-    };
+    }
+    
     void remove(){
         if(cpr.CheckCLientReq(&parsed, HTTP_POST)){
             uint8 data[4] = {};
@@ -34,5 +35,5 @@ namespace Animation{
             data[3] = 0;
             cpr.AnswerClient(serial.SendDataWithWait(data, 4));
         }
-    };
+    }
 };

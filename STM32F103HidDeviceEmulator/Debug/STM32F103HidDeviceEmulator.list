@@ -35,17 +35,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_rnglists 00000a67  00000000  00000000  00021188  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001a785  00000000  00000000  00021bef  2**0
+ 16 .debug_macro  0001a78f  00000000  00000000  00021bef  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00017308  00000000  00000000  0003c374  2**0
+ 17 .debug_line   00017316  00000000  00000000  0003c37e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00087afa  00000000  00000000  0005367c  2**0
+ 18 .debug_str    00087b0c  00000000  00000000  00053694  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000db176  2**0
+ 19 .comment      00000043  00000000  00000000  000db1a0  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003918  00000000  00000000  000db1bc  2**2
+ 20 .debug_frame  00003918  00000000  00000000  000db1e4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  000dead4  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  000deafc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1134,7 +1134,7 @@ void MX_USART3_UART_Init(void)
  8000c24:	d001      	beq.n	8000c2a <MX_USART3_UART_Init+0x46>
   {
     Error_Handler();
- 8000c26:	f000 f8f0 	bl	8000e0a <Error_Handler>
+ 8000c26:	f000 f8b6 	bl	8000d96 <Error_Handler>
   }
   /* USER CODE BEGIN USART3_Init 2 */
 
@@ -1253,219 +1253,220 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
  8000cd8:	40021000 	.word	0x40021000
  8000cdc:	40010c00 	.word	0x40010c00
 
-08000ce0 <main>:
-Animation animation = {0, 0, {}};
+08000ce0 <SystemClock_Config>:
+#define INC_INITS_RCC_H_
 
-void SystemClock_Config(void);
-
-int main(void)
-{
- 8000ce0:	b580      	push	{r7, lr}
- 8000ce2:	af00      	add	r7, sp, #0
-	HAL_Init();
- 8000ce4:	f000 fd9e 	bl	8001824 <HAL_Init>
-	SystemClock_Config();
- 8000ce8:	f000 f834 	bl	8000d54 <SystemClock_Config>
-	MX_GPIO_Init();
- 8000cec:	f7ff ff22 	bl	8000b34 <MX_GPIO_Init>
-	MX_USB_DEVICE_Init();
- 8000cf0:	f007 ffd4 	bl	8008c9c <MX_USB_DEVICE_Init>
-	MX_USART3_UART_Init();
- 8000cf4:	f7ff ff76 	bl	8000be4 <MX_USART3_UART_Init>
-	HAL_UART_Receive_IT(&huart3,&rxcall,1);
- 8000cf8:	2201      	movs	r2, #1
- 8000cfa:	4913      	ldr	r1, [pc, #76]	@ (8000d48 <main+0x68>)
- 8000cfc:	4813      	ldr	r0, [pc, #76]	@ (8000d4c <main+0x6c>)
- 8000cfe:	f003 fc76 	bl	80045ee <HAL_UART_Receive_IT>
-
-	while (1)
-	{
-		switch(action.device){
- 8000d02:	4b13      	ldr	r3, [pc, #76]	@ (8000d50 <main+0x70>)
- 8000d04:	781b      	ldrb	r3, [r3, #0]
- 8000d06:	2b03      	cmp	r3, #3
- 8000d08:	d014      	beq.n	8000d34 <main+0x54>
- 8000d0a:	2b03      	cmp	r3, #3
- 8000d0c:	dc19      	bgt.n	8000d42 <main+0x62>
- 8000d0e:	2b01      	cmp	r3, #1
- 8000d10:	d002      	beq.n	8000d18 <main+0x38>
- 8000d12:	2b02      	cmp	r3, #2
- 8000d14:	d007      	beq.n	8000d26 <main+0x46>
- 8000d16:	e014      	b.n	8000d42 <main+0x62>
-			case(MOUSE):
-				MouseCommandSetup(&action);
- 8000d18:	480d      	ldr	r0, [pc, #52]	@ (8000d50 <main+0x70>)
- 8000d1a:	f000 fc11 	bl	8001540 <MouseCommandSetup>
-				action.device = 0;
- 8000d1e:	4b0c      	ldr	r3, [pc, #48]	@ (8000d50 <main+0x70>)
- 8000d20:	2200      	movs	r2, #0
- 8000d22:	701a      	strb	r2, [r3, #0]
-				break;
- 8000d24:	e00d      	b.n	8000d42 <main+0x62>
-			case(KEYBOARD):
-				KeyboardSetup(&action);
- 8000d26:	480a      	ldr	r0, [pc, #40]	@ (8000d50 <main+0x70>)
- 8000d28:	f000 fb72 	bl	8001410 <KeyboardSetup>
-				action.device = 0;
- 8000d2c:	4b08      	ldr	r3, [pc, #32]	@ (8000d50 <main+0x70>)
- 8000d2e:	2200      	movs	r2, #0
- 8000d30:	701a      	strb	r2, [r3, #0]
-				break;
- 8000d32:	e006      	b.n	8000d42 <main+0x62>
-			case(ANIMATION):
-				AnimationSetup(&action);
- 8000d34:	4806      	ldr	r0, [pc, #24]	@ (8000d50 <main+0x70>)
- 8000d36:	f000 f8e7 	bl	8000f08 <AnimationSetup>
-				action.device = 0;
- 8000d3a:	4b05      	ldr	r3, [pc, #20]	@ (8000d50 <main+0x70>)
- 8000d3c:	2200      	movs	r2, #0
- 8000d3e:	701a      	strb	r2, [r3, #0]
-				break;
- 8000d40:	bf00      	nop
-		}
-		Animate();
- 8000d42:	f000 f93b 	bl	8000fbc <Animate>
-		switch(action.device){
- 8000d46:	e7dc      	b.n	8000d02 <main+0x22>
- 8000d48:	2000065c 	.word	0x2000065c
- 8000d4c:	20000614 	.word	0x20000614
- 8000d50:	20000660 	.word	0x20000660
-
-08000d54 <SystemClock_Config>:
-	}
-}
+#include <main.h>
 
 void SystemClock_Config(void)
 {
- 8000d54:	b580      	push	{r7, lr}
- 8000d56:	b094      	sub	sp, #80	@ 0x50
- 8000d58:	af00      	add	r7, sp, #0
+ 8000ce0:	b580      	push	{r7, lr}
+ 8000ce2:	b094      	sub	sp, #80	@ 0x50
+ 8000ce4:	af00      	add	r7, sp, #0
 	RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 8000d5a:	f107 0328 	add.w	r3, r7, #40	@ 0x28
- 8000d5e:	2228      	movs	r2, #40	@ 0x28
- 8000d60:	2100      	movs	r1, #0
- 8000d62:	4618      	mov	r0, r3
- 8000d64:	f008 fb52 	bl	800940c <memset>
+ 8000ce6:	f107 0328 	add.w	r3, r7, #40	@ 0x28
+ 8000cea:	2228      	movs	r2, #40	@ 0x28
+ 8000cec:	2100      	movs	r1, #0
+ 8000cee:	4618      	mov	r0, r3
+ 8000cf0:	f008 fb8c 	bl	800940c <memset>
 	RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 8000d68:	f107 0314 	add.w	r3, r7, #20
- 8000d6c:	2200      	movs	r2, #0
- 8000d6e:	601a      	str	r2, [r3, #0]
- 8000d70:	605a      	str	r2, [r3, #4]
- 8000d72:	609a      	str	r2, [r3, #8]
- 8000d74:	60da      	str	r2, [r3, #12]
- 8000d76:	611a      	str	r2, [r3, #16]
+ 8000cf4:	f107 0314 	add.w	r3, r7, #20
+ 8000cf8:	2200      	movs	r2, #0
+ 8000cfa:	601a      	str	r2, [r3, #0]
+ 8000cfc:	605a      	str	r2, [r3, #4]
+ 8000cfe:	609a      	str	r2, [r3, #8]
+ 8000d00:	60da      	str	r2, [r3, #12]
+ 8000d02:	611a      	str	r2, [r3, #16]
 	RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
- 8000d78:	1d3b      	adds	r3, r7, #4
- 8000d7a:	2200      	movs	r2, #0
- 8000d7c:	601a      	str	r2, [r3, #0]
- 8000d7e:	605a      	str	r2, [r3, #4]
- 8000d80:	609a      	str	r2, [r3, #8]
- 8000d82:	60da      	str	r2, [r3, #12]
+ 8000d04:	1d3b      	adds	r3, r7, #4
+ 8000d06:	2200      	movs	r2, #0
+ 8000d08:	601a      	str	r2, [r3, #0]
+ 8000d0a:	605a      	str	r2, [r3, #4]
+ 8000d0c:	609a      	str	r2, [r3, #8]
+ 8000d0e:	60da      	str	r2, [r3, #12]
 
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
- 8000d84:	2301      	movs	r3, #1
- 8000d86:	62bb      	str	r3, [r7, #40]	@ 0x28
+ 8000d10:	2301      	movs	r3, #1
+ 8000d12:	62bb      	str	r3, [r7, #40]	@ 0x28
 	RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 8000d88:	f44f 3380 	mov.w	r3, #65536	@ 0x10000
- 8000d8c:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 8000d14:	f44f 3380 	mov.w	r3, #65536	@ 0x10000
+ 8000d18:	62fb      	str	r3, [r7, #44]	@ 0x2c
 	RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
- 8000d8e:	2300      	movs	r3, #0
- 8000d90:	633b      	str	r3, [r7, #48]	@ 0x30
+ 8000d1a:	2300      	movs	r3, #0
+ 8000d1c:	633b      	str	r3, [r7, #48]	@ 0x30
 	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 8000d92:	2301      	movs	r3, #1
- 8000d94:	63bb      	str	r3, [r7, #56]	@ 0x38
+ 8000d1e:	2301      	movs	r3, #1
+ 8000d20:	63bb      	str	r3, [r7, #56]	@ 0x38
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 8000d96:	2302      	movs	r3, #2
- 8000d98:	647b      	str	r3, [r7, #68]	@ 0x44
+ 8000d22:	2302      	movs	r3, #2
+ 8000d24:	647b      	str	r3, [r7, #68]	@ 0x44
 	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 8000d9a:	f44f 3380 	mov.w	r3, #65536	@ 0x10000
- 8000d9e:	64bb      	str	r3, [r7, #72]	@ 0x48
+ 8000d26:	f44f 3380 	mov.w	r3, #65536	@ 0x10000
+ 8000d2a:	64bb      	str	r3, [r7, #72]	@ 0x48
 	RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
- 8000da0:	f44f 1380 	mov.w	r3, #1048576	@ 0x100000
- 8000da4:	64fb      	str	r3, [r7, #76]	@ 0x4c
+ 8000d2c:	f44f 1380 	mov.w	r3, #1048576	@ 0x100000
+ 8000d30:	64fb      	str	r3, [r7, #76]	@ 0x4c
 	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 8000da6:	f107 0328 	add.w	r3, r7, #40	@ 0x28
- 8000daa:	4618      	mov	r0, r3
- 8000dac:	f002 fe7e 	bl	8003aac <HAL_RCC_OscConfig>
- 8000db0:	4603      	mov	r3, r0
- 8000db2:	2b00      	cmp	r3, #0
- 8000db4:	d001      	beq.n	8000dba <SystemClock_Config+0x66>
+ 8000d32:	f107 0328 	add.w	r3, r7, #40	@ 0x28
+ 8000d36:	4618      	mov	r0, r3
+ 8000d38:	f002 feb8 	bl	8003aac <HAL_RCC_OscConfig>
+ 8000d3c:	4603      	mov	r3, r0
+ 8000d3e:	2b00      	cmp	r3, #0
+ 8000d40:	d001      	beq.n	8000d46 <SystemClock_Config+0x66>
 	{
 		Error_Handler();
- 8000db6:	f000 f828 	bl	8000e0a <Error_Handler>
+ 8000d42:	f000 f828 	bl	8000d96 <Error_Handler>
 	}
 	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 8000dba:	230f      	movs	r3, #15
- 8000dbc:	617b      	str	r3, [r7, #20]
+ 8000d46:	230f      	movs	r3, #15
+ 8000d48:	617b      	str	r3, [r7, #20]
 							  |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
 	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 8000dbe:	2302      	movs	r3, #2
- 8000dc0:	61bb      	str	r3, [r7, #24]
+ 8000d4a:	2302      	movs	r3, #2
+ 8000d4c:	61bb      	str	r3, [r7, #24]
 	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 8000dc2:	2300      	movs	r3, #0
- 8000dc4:	61fb      	str	r3, [r7, #28]
+ 8000d4e:	2300      	movs	r3, #0
+ 8000d50:	61fb      	str	r3, [r7, #28]
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 8000dc6:	f44f 6380 	mov.w	r3, #1024	@ 0x400
- 8000dca:	623b      	str	r3, [r7, #32]
+ 8000d52:	f44f 6380 	mov.w	r3, #1024	@ 0x400
+ 8000d56:	623b      	str	r3, [r7, #32]
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 8000dcc:	2300      	movs	r3, #0
- 8000dce:	627b      	str	r3, [r7, #36]	@ 0x24
+ 8000d58:	2300      	movs	r3, #0
+ 8000d5a:	627b      	str	r3, [r7, #36]	@ 0x24
 
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
- 8000dd0:	f107 0314 	add.w	r3, r7, #20
- 8000dd4:	2101      	movs	r1, #1
- 8000dd6:	4618      	mov	r0, r3
- 8000dd8:	f003 f8ea 	bl	8003fb0 <HAL_RCC_ClockConfig>
- 8000ddc:	4603      	mov	r3, r0
- 8000dde:	2b00      	cmp	r3, #0
- 8000de0:	d001      	beq.n	8000de6 <SystemClock_Config+0x92>
+ 8000d5c:	f107 0314 	add.w	r3, r7, #20
+ 8000d60:	2101      	movs	r1, #1
+ 8000d62:	4618      	mov	r0, r3
+ 8000d64:	f003 f924 	bl	8003fb0 <HAL_RCC_ClockConfig>
+ 8000d68:	4603      	mov	r3, r0
+ 8000d6a:	2b00      	cmp	r3, #0
+ 8000d6c:	d001      	beq.n	8000d72 <SystemClock_Config+0x92>
 	{
 		Error_Handler();
- 8000de2:	f000 f812 	bl	8000e0a <Error_Handler>
+ 8000d6e:	f000 f812 	bl	8000d96 <Error_Handler>
 	}
 	PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
- 8000de6:	2310      	movs	r3, #16
- 8000de8:	607b      	str	r3, [r7, #4]
+ 8000d72:	2310      	movs	r3, #16
+ 8000d74:	607b      	str	r3, [r7, #4]
 	PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
- 8000dea:	f44f 0380 	mov.w	r3, #4194304	@ 0x400000
- 8000dee:	613b      	str	r3, [r7, #16]
+ 8000d76:	f44f 0380 	mov.w	r3, #4194304	@ 0x400000
+ 8000d7a:	613b      	str	r3, [r7, #16]
 	if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 8000df0:	1d3b      	adds	r3, r7, #4
- 8000df2:	4618      	mov	r0, r3
- 8000df4:	f003 fa6a 	bl	80042cc <HAL_RCCEx_PeriphCLKConfig>
- 8000df8:	4603      	mov	r3, r0
- 8000dfa:	2b00      	cmp	r3, #0
- 8000dfc:	d001      	beq.n	8000e02 <SystemClock_Config+0xae>
+ 8000d7c:	1d3b      	adds	r3, r7, #4
+ 8000d7e:	4618      	mov	r0, r3
+ 8000d80:	f003 faa4 	bl	80042cc <HAL_RCCEx_PeriphCLKConfig>
+ 8000d84:	4603      	mov	r3, r0
+ 8000d86:	2b00      	cmp	r3, #0
+ 8000d88:	d001      	beq.n	8000d8e <SystemClock_Config+0xae>
 	{
 		Error_Handler();
- 8000dfe:	f000 f804 	bl	8000e0a <Error_Handler>
+ 8000d8a:	f000 f804 	bl	8000d96 <Error_Handler>
 	}
 }
- 8000e02:	bf00      	nop
- 8000e04:	3750      	adds	r7, #80	@ 0x50
- 8000e06:	46bd      	mov	sp, r7
- 8000e08:	bd80      	pop	{r7, pc}
+ 8000d8e:	bf00      	nop
+ 8000d90:	3750      	adds	r7, #80	@ 0x50
+ 8000d92:	46bd      	mov	sp, r7
+ 8000d94:	bd80      	pop	{r7, pc}
 
-08000e0a <Error_Handler>:
+08000d96 <Error_Handler>:
 
 void Error_Handler(void)
 {
- 8000e0a:	b480      	push	{r7}
- 8000e0c:	af00      	add	r7, sp, #0
+ 8000d96:	b480      	push	{r7}
+ 8000d98:	af00      	add	r7, sp, #0
   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
            Can only be executed in Privileged modes.
  */
 __STATIC_FORCEINLINE void __disable_irq(void)
 {
   __ASM volatile ("cpsid i" : : : "memory");
- 8000e0e:	b672      	cpsid	i
+ 8000d9a:	b672      	cpsid	i
 }
- 8000e10:	bf00      	nop
+ 8000d9c:	bf00      	nop
   __disable_irq();
   while (1){}
- 8000e12:	bf00      	nop
- 8000e14:	e7fd      	b.n	8000e12 <Error_Handler+0x8>
+ 8000d9e:	bf00      	nop
+ 8000da0:	e7fd      	b.n	8000d9e <Error_Handler+0x8>
 	...
+
+08000da4 <main>:
+Animation animation = {0, 0, {}};
+
+void SystemClock_Config(void);
+
+int main(void)
+{
+ 8000da4:	b580      	push	{r7, lr}
+ 8000da6:	af00      	add	r7, sp, #0
+	HAL_Init();
+ 8000da8:	f000 fd3c 	bl	8001824 <HAL_Init>
+	SystemClock_Config();
+ 8000dac:	f7ff ff98 	bl	8000ce0 <SystemClock_Config>
+	MX_GPIO_Init();
+ 8000db0:	f7ff fec0 	bl	8000b34 <MX_GPIO_Init>
+	MX_USB_DEVICE_Init();
+ 8000db4:	f007 ff72 	bl	8008c9c <MX_USB_DEVICE_Init>
+	MX_USART3_UART_Init();
+ 8000db8:	f7ff ff14 	bl	8000be4 <MX_USART3_UART_Init>
+	HAL_UART_Receive_IT(&huart3,&rxcall,1);
+ 8000dbc:	2201      	movs	r2, #1
+ 8000dbe:	4913      	ldr	r1, [pc, #76]	@ (8000e0c <main+0x68>)
+ 8000dc0:	4813      	ldr	r0, [pc, #76]	@ (8000e10 <main+0x6c>)
+ 8000dc2:	f003 fc14 	bl	80045ee <HAL_UART_Receive_IT>
+
+	while (1)
+	{
+		switch(action.device){
+ 8000dc6:	4b13      	ldr	r3, [pc, #76]	@ (8000e14 <main+0x70>)
+ 8000dc8:	781b      	ldrb	r3, [r3, #0]
+ 8000dca:	2b03      	cmp	r3, #3
+ 8000dcc:	d014      	beq.n	8000df8 <main+0x54>
+ 8000dce:	2b03      	cmp	r3, #3
+ 8000dd0:	dc19      	bgt.n	8000e06 <main+0x62>
+ 8000dd2:	2b01      	cmp	r3, #1
+ 8000dd4:	d002      	beq.n	8000ddc <main+0x38>
+ 8000dd6:	2b02      	cmp	r3, #2
+ 8000dd8:	d007      	beq.n	8000dea <main+0x46>
+ 8000dda:	e014      	b.n	8000e06 <main+0x62>
+			case(MOUSE):
+				MouseCommandSetup(&action);
+ 8000ddc:	480d      	ldr	r0, [pc, #52]	@ (8000e14 <main+0x70>)
+ 8000dde:	f000 fbaf 	bl	8001540 <MouseCommandSetup>
+				action.device = 0;
+ 8000de2:	4b0c      	ldr	r3, [pc, #48]	@ (8000e14 <main+0x70>)
+ 8000de4:	2200      	movs	r2, #0
+ 8000de6:	701a      	strb	r2, [r3, #0]
+				break;
+ 8000de8:	e00d      	b.n	8000e06 <main+0x62>
+			case(KEYBOARD):
+				KeyboardSetup(&action);
+ 8000dea:	480a      	ldr	r0, [pc, #40]	@ (8000e14 <main+0x70>)
+ 8000dec:	f000 fb10 	bl	8001410 <KeyboardSetup>
+				action.device = 0;
+ 8000df0:	4b08      	ldr	r3, [pc, #32]	@ (8000e14 <main+0x70>)
+ 8000df2:	2200      	movs	r2, #0
+ 8000df4:	701a      	strb	r2, [r3, #0]
+				break;
+ 8000df6:	e006      	b.n	8000e06 <main+0x62>
+			case(ANIMATION):
+				AnimationSetup(&action);
+ 8000df8:	4806      	ldr	r0, [pc, #24]	@ (8000e14 <main+0x70>)
+ 8000dfa:	f000 f885 	bl	8000f08 <AnimationSetup>
+				action.device = 0;
+ 8000dfe:	4b05      	ldr	r3, [pc, #20]	@ (8000e14 <main+0x70>)
+ 8000e00:	2200      	movs	r2, #0
+ 8000e02:	701a      	strb	r2, [r3, #0]
+				break;
+ 8000e04:	bf00      	nop
+		}
+		Animate();
+ 8000e06:	f000 f8d9 	bl	8000fbc <Animate>
+		switch(action.device){
+ 8000e0a:	e7dc      	b.n	8000dc6 <main+0x22>
+ 8000e0c:	2000065c 	.word	0x2000065c
+ 8000e10:	20000614 	.word	0x20000614
+ 8000e14:	20000660 	.word	0x20000660
 
 08000e18 <HAL_MspInit>:
 /* USER CODE END 0 */
@@ -3150,7 +3151,7 @@ LoopFillZerobss:
  8001802:	f007 fe11 	bl	8009428 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 8001806:	f7ff fa6b 	bl	8000ce0 <main>
+ 8001806:	f7ff facd 	bl	8000da4 <main>
   bx lr
  800180a:	4770      	bx	lr
   ldr r0, =_sdata
@@ -20670,7 +20671,7 @@ void MX_USB_DEVICE_Init(void)
  8008cae:	d001      	beq.n	8008cb4 <MX_USB_DEVICE_Init+0x18>
   {
     Error_Handler();
- 8008cb0:	f7f8 f8ab 	bl	8000e0a <Error_Handler>
+ 8008cb0:	f7f8 f871 	bl	8000d96 <Error_Handler>
   }
   if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_HID) != USBD_OK)
  8008cb4:	490b      	ldr	r1, [pc, #44]	@ (8008ce4 <MX_USB_DEVICE_Init+0x48>)
@@ -20681,7 +20682,7 @@ void MX_USB_DEVICE_Init(void)
  8008cc0:	d001      	beq.n	8008cc6 <MX_USB_DEVICE_Init+0x2a>
   {
     Error_Handler();
- 8008cc2:	f7f8 f8a2 	bl	8000e0a <Error_Handler>
+ 8008cc2:	f7f8 f868 	bl	8000d96 <Error_Handler>
   }
   if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
  8008cc6:	4806      	ldr	r0, [pc, #24]	@ (8008ce0 <MX_USB_DEVICE_Init+0x44>)
@@ -20691,7 +20692,7 @@ void MX_USB_DEVICE_Init(void)
  8008cd0:	d001      	beq.n	8008cd6 <MX_USB_DEVICE_Init+0x3a>
   {
     Error_Handler();
- 8008cd2:	f7f8 f89a 	bl	8000e0a <Error_Handler>
+ 8008cd2:	f7f8 f860 	bl	8000d96 <Error_Handler>
   }
 
   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
@@ -21302,7 +21303,7 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
  800900c:	d001      	beq.n	8009012 <HAL_PCD_ResetCallback+0x18>
   {
     Error_Handler();
- 800900e:	f7f7 fefc 	bl	8000e0a <Error_Handler>
+ 800900e:	f7f7 fec2 	bl	8000d96 <Error_Handler>
   }
     /* Set Speed. */
   USBD_LL_SetSpeed((USBD_HandleTypeDef*)hpcd->pData, speed);
@@ -21446,7 +21447,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
  80090ce:	d001      	beq.n	80090d4 <USBD_LL_Init+0x4c>
   {
     Error_Handler( );
- 80090d0:	f7f7 fe9b 	bl	8000e0a <Error_Handler>
+ 80090d0:	f7f7 fe61 	bl	8000d96 <Error_Handler>
   HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_FS, PCD_DataInStageCallback);
   HAL_PCD_RegisterIsoOutIncpltCallback(&hpcd_USB_FS, PCD_ISOOUTIncompleteCallback);
   HAL_PCD_RegisterIsoInIncpltCallback(&hpcd_USB_FS, PCD_ISOINIncompleteCallback);

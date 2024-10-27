@@ -36,7 +36,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/modules/AnimationModule.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
  ../Core/Inc/modules/MouseModule.h ../Core/Inc/inits/usart.h \
- ../USB_DEVICE/App/usb_device.h \
+ ../Core/Inc/inits/rcc.h ../USB_DEVICE/App/usb_device.h \
  C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
  ../Core/Inc/inits/gpio.h
 ../Core/Inc/modules/AnimationModule.h:
@@ -79,6 +79,7 @@ C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
 ../Core/Inc/modules/MouseModule.h:
 ../Core/Inc/inits/usart.h:
+../Core/Inc/inits/rcc.h:
 ../USB_DEVICE/App/usb_device.h:
 C:/Users/arsen/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.6/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 ../Core/Inc/inits/gpio.h:
