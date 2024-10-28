@@ -60,13 +60,13 @@ void MouseMoveAnimation(){
 				data_out[2] = 1+2*animation.data[2];
 				break;
 			case('l'):
-				data_out[2] = 254-2*animation.data[2];
+				data_out[2] = 255-2*animation.data[2];
 				break;
 			case('b'):
 				data_out[3] = 1+2*animation.data[2];
 				break;
 			case('t'):
-				data_out[3] = 254-2*animation.data[2];
+				data_out[3] = 255-2*animation.data[2];
 				break;
 		}
 		USBD_HID_SendReport(&hUsbDeviceFS, data_out, 5);
