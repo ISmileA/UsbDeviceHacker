@@ -11,9 +11,10 @@
 extern USBD_HandleTypeDef hUsbDeviceFS;
 uint32_t time = 0;
 uint8_t flag = 1;
+uint8_t f = 0;
 uint16_t data_set = 0;
 
-uint16_t x = 0, y_pos = 0, y = 0;
+int16_t x = 0, x_pos = 0, y_pos = 0, y = 0;
 
 void AnimationSetup(Action *act){
 	switch(act->command){
@@ -120,15 +121,48 @@ void KeyboardTextAnimation(){
 }
 void MouseRoundAnimation(){
 	uint16_t radius = animation.data[0], speed = animation.data[1], buttons = animation.data[2];
-	if(x == 0)
-		y_pos = radius;
 	if((HAL_GetTick()-time) >= 5){
-		x+=1+2*speed;
-		y = abs(y_pos-(uint16_t)sqrt(radius*radius-x*x));
-		y_pos-=y;
-		if(x >= radius)
-			x = 0;
-		uint8_t data_out[5] = {0x01, buttons, 1+2*speed, y, 0};
+		switch(f){
+			case(0):
+				x = 1+2*speed;
+				if(x_pos == 0)
+					y_pos = radius;
+				x_pos+=x;
+				y = abs(y_pos-(uint16_t)sqrt(radius*radius-x_pos*x_pos));
+				y_pos-=y;
+				if(x_pos >= radius){
+					f = 1;
+				}
+				break;
+			case(1):
+				x = -(1+2*speed);
+				x_pos+=x;
+				y = abs(y_pos-(uint16_t)sqrt(radius*radius-x_pos*x_pos));
+				y_pos+=y;
+				if(x_pos <= 0){
+					f = 2;
+				}
+				break;
+			case(2):
+				x = -(1+2*speed);
+				x_pos+=x;
+				y = -abs(y_pos-(uint16_t)sqrt(radius*radius-x_pos*x_pos));
+				y_pos+=y;
+				if(x_pos <= -radius){
+					f = 3;
+				}
+				break;
+			case(3):
+				x = (1+2*speed);
+				x_pos+=x;
+				y = -abs(y_pos-(uint16_t)sqrt(radius*radius-x_pos*x_pos));
+				y_pos-=y;
+				if(x_pos >= 0){
+					f = 0;
+				}
+				break;
+		}
+		uint8_t data_out[5] = {0x01, buttons, (uint8_t)x, (uint8_t)y, 0};
 		USBD_HID_SendReport(&hUsbDeviceFS, data_out, 5);
 		time = HAL_GetTick();
 	}
