@@ -2,7 +2,7 @@
  * AnimationModule.h
  *
  *  Created on: Oct 19, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_ANIMATIONMODULE_H_

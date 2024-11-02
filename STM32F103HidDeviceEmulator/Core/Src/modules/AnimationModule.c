@@ -2,7 +2,7 @@
  * AnimationModule.c
  *
  *  Created on: Oct 19, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #include <modules/AnimationModule.h>

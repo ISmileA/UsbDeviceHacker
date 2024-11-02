@@ -2,7 +2,7 @@
  * UsartRouter.h
  *
  *  Created on: Oct 14, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_USARTPARSERMODULE_H_

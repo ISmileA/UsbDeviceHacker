@@ -2,7 +2,7 @@
  * KeyboardModule.h
  *
  *  Created on: Oct 18, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_KEYBOARDMODULE_H_

@@ -2,7 +2,7 @@
  * MouseController.c
  *
  *  Created on: Oct 17, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #include <modules/MouseModule.h>

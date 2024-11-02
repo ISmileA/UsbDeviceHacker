@@ -2,7 +2,7 @@
  * MouseController.h
  *
  *  Created on: Oct 16, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_MOUSEMODULE_H_

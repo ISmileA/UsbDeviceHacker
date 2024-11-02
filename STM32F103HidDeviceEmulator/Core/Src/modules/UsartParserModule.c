@@ -2,7 +2,7 @@
  * UsartRouter.c
  *
  *  Created on: Oct 14, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #include <modules/UsartAnswerModule.h>

@@ -2,7 +2,7 @@
  * KeyboardModule.c
  *
  *  Created on: Oct 18, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #include "modules/KeyboardModule.h"

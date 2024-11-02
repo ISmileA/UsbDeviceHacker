@@ -2,7 +2,7 @@
  * UsartAnswerModule.h
  *
  *  Created on: Oct 15, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_USARTANSWERMODULE_H_
